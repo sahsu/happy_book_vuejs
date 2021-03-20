@@ -1,27 +1,27 @@
-# 表单的提交
+# 表單的提交
 
-大家要切记这一点：　在任何 Single Page App中，js代码都不会产生. 一个传统意义的form表单提交！（这会引起整个页面的刷新）
+大家要切記這一點：　在任何 Single Page App中，js代碼都不會產生. 一個傳統意義的form表單提交！（這會引起整個頁面的刷新）
 
-所以，我们往往用事件来实现．（桌面开发思维）
+所以，我們往往用事件來實現．（桌面開發思維）
 
-例如，在远程有个接口，可以接受别人的留言：
+例如，在遠程有個接口，可以接受別人的留言：
 
 - URL: http://siwei.me/interface/blogs/add_comment
-- 参数：　`content`:  留言的内容．
-- 请求方式： `POST`
-- 返回结果：
+- 參數：　`content`:  留言的內容．
+- 請求方式： `POST`
+- 返回結果：
 
 ```
-{"result":"ok","content":"(留言的内容)"}
+{"result":"ok","content":"(留言的內容)"}
 ```
 
-我们可以先用POSTMAN来确认一下:
+我們可以先用POSTMAN來確認一下:
 
-![postman对于接口的调用](./images/postman_interface_add_comment.png)
+![postman對於接口的調用](./images/postman_interface_add_comment.png)
 
-例如，下面的代码，就是把输入的表单，提交到我们的后台．
+例如，下面的代碼，就是把輸入的表單，提交到我們的後臺．
 
-新增加一个文件: `/src/components/FormSubmit.vue`, 内容如下： 
+新增加一個文件: `/src/components/FormSubmit.vue`, 內容如下： 
 
 ```
 <template>
@@ -48,10 +48,10 @@ export default {
         }
       )
       .then((response) => {
-          alert("提交成功!, 刚才提交的内容是：" + response.body.content)
+          alert("提交成功!, 剛纔提交的內容是：" + response.body.content)
         },
         (response) => {
-          alert("出错了")
+          alert("出錯了")
         }
       )
     }
@@ -60,19 +60,19 @@ export default {
 </script>
 ```
 
-上面的代码中： 
+上面的代碼中： 
 
 ```
     <textarea v-model='content'>
     </textarea>
 ```
 
-就是待输入的表单项 。 
+就是待輸入的表單項 。 
 
 ```    
 <input type='button' @click='submit' value='留言'/>
 ```
-则是按钮，点击后会触发提交表单的函数 `submit`. 
+則是按鈕，點擊後會觸發提交表單的函數 `submit`. 
 
 
 ```
@@ -83,25 +83,25 @@ export default {
         }
       )
       .then((response) => {
-          alert("提交成功!, 刚才提交的内容是：" + response.body.content)
+          alert("提交成功!, 剛纔提交的內容是：" + response.body.content)
         },
         (response) => {
-          alert("出错了")
+          alert("出錯了")
         }
       )
     }
 ```
 
-上面的代码，定义了提交表单的具体函数 `submit`. 
+上面的代碼，定義了提交表單的具體函數 `submit`. 
 
-- `this.$http.post` 表示 发起的http 的类型是 post. 
+- `this.$http.post` 表示 發起的http 的類型是 post. 
 
-- `post` 函数的第一个参数是 url, 第二个参数是一个json,  `{ content: this.content}` 代表了我们要提交的数据
+- `post` 函數的第一個參數是 url, 第二個參數是一個json,  `{ content: this.content}` 代表了我們要提交的數據
 
-- `then`函数的处理同 http get 请求
+- `then`函數的處理同 http get 請求
 
 
-接下来，我们修改路由文件： `src/router/index.js`, 增加内容如下：
+接下來，我們修改路由文件： `src/router/index.js`, 增加內容如下：
 
 ```
 import FormSubmit from '@/components/FormSubmit'
@@ -117,13 +117,13 @@ export default new Router({
 } )
 ```
 
-访问url:   `http://localhost:8080/form_submit` , 输入一段字符串, 如下图所示：
+訪問url:   `http://localhost:8080/form_submit` , 輸入一段字符串, 如下圖所示：
 
-![输入表单](./images/form_submit1.png)
+![輸入表單](./images/form_submit1.png)
 
-点击提交按钮，就可以看到，内容已经提交，并且得到了返回的response, 触发了 `alert`， 如下图所示：
+點擊提交按鈕，就可以看到，內容已經提交，並且得到了返回的response, 觸發了 `alert`， 如下圖所示：
 
-![输入表单](./images/form_submit2.png)
+![輸入表單](./images/form_submit2.png)
 
 查看一下返回的json： 
 
@@ -131,4 +131,4 @@ export default new Router({
 {"result":"ok","content":"\u7533\u8001\u5e08\uff0c\u6211\u5b66\u4e60\u5230\u4e86 Vuejs\u7684\u8868\u5355\u7684\u63d0\u4ea4\u4e86\u3002"}
 ```
 
-至此，完成了一个完整的 输入表单，提交表单的过程。
+至此，完成了一個完整的 輸入表單，提交表單的過程。

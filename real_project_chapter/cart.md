@@ -1,15 +1,15 @@
-# 购物车
+# 購物車
 
-购物车具备两个功能： 
+購物車具備兩個功能： 
 
-1. 保存用户需要的数据
+1. 保存用戶需要的數據
 2. 清空
 
-所以，我们使用vuex来实现购物车
+所以，我們使用vuex來實現購物車
 
-## 1. 添加购物车 路由
+## 1. 添加購物車 路由
 
-向 文件 src/router/index.js 中增加内容：  
+向 文件 src/router/index.js 中增加內容：  
 
 ```
 import Cart from '@/components/Cart'
@@ -26,9 +26,9 @@ export default new Router({
 })
 ```
 
-## 2. 添加查看购物车的vue页面
+## 2. 添加查看購物車的vue頁面
 
-新增 src/components/Car.vue 文件，内容如下： 
+新增 src/components/Car.vue 文件，內容如下： 
 
 ```
 <template>
@@ -65,27 +65,27 @@ export default new Router({
 
 ```
 
-## 3. 增加对应的组件
+## 3. 增加對應的組件
 
-3.1 新增购物车的头部文件  src/components/CartHeader.vue: 
+3.1 新增購物車的頭部文件  src/components/CartHeader.vue: 
 
 ```
 <template>
 	<div id="carttp">
 		<header class="top_bar">
 	    <a onclick="window.history.go(-1)" class="icon_back"></a>
-	    <h3 class="cartname">购物车</h3>
+	    <h3 class="cartname">購物車</h3>
 	</header>
 	</div>
 </template>
 ```
 
-3.2 新增购物车的主体内容 src/components/CartMain.vue: 
+3.2 新增購物車的主體內容 src/components/CartMain.vue: 
 
 ```
 <template>
     <main class="cart_box">
-    <p v-show="!products.length"><i>请选择商品加入到购物车</i></p>
+    <p v-show="!products.length"><i>請選擇商品加入到購物車</i></p>
         <div class="cart_content clearfix" v-for="item in products" style="position: relative;">
             <div class="cart_shop clearfix">
                 <div class="cart_check_box">
@@ -93,7 +93,7 @@ export default new Router({
                     </div>
                 </div>
                 <div class="shop_info clearfix">
-                    <span class="shop_name" style="font-size: 14px;">丝路乐购新疆商城</span>
+                    <span class="shop_name" style="font-size: 14px;">絲路樂購新疆商城</span>
                 </div>
             </div>
 
@@ -135,13 +135,13 @@ export default new Router({
         <div class="pop" style="display: none">
           <div class="pop_box">
             <div class="del_info">
-              确定要删除该商品吗？
+              確定要刪除該商品嗎？
             </div>
             <div class="del_cancel">
               取消
             </div>
             <div @click="deleteItem" class="del_ok">
-              确定
+              確定
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@ export default new Router({
           <footer class="cart_footer">
             <div class="count_money_box">
               <div class="heji">
-                <strong>合计:</strong>
+                <strong>合計:</strong>
                 <strong style="color: #ff621a; font-size: 18px;">\{\{ total | currency }}</strong>
               </div>
               <a :disabled="!products.length" @click="checkout(products)" class="go_pay">
-                <span style="color: #f5f5f5; font-weight: 600;">结算</span>
+                <span style="color: #f5f5f5; font-weight: 600;">結算</span>
               </a>
             </div>
           </footer>
@@ -190,22 +190,22 @@ export default new Router({
     },
     methods: {
 
-      // 跳转到支付页面
+      // 跳轉到支付頁面
       checkout (products) {
         go("/shops/dingdanzhifu", this.$router)
       },
 
-      // 对于商品的数量进行增加
+      // 對於商品的數量進行增加
       add (id) {
         this.$store.dispatch('changeItemNumber', {id, type: 'add'})
       },
 
-      // 对于商品的数量进行减少
+      // 對於商品的數量進行減少
       minus (id) {
         this.$store.dispatch('changeItemNumber', {id, type: 'minus'})
       },
 
-      // 删除某个商品
+      // 刪除某個商品
       deleteItem () {
         this.$store.dispatch('deleteItem', this.need_delete_item.id)
       },
@@ -217,9 +217,9 @@ export default new Router({
 </script>
 ```
 
-3.3 修改Vuex的函数
+3.3 修改Vuex的函數
 
-把下面代码添加到 src/vuex/actions.js 文件中: 
+把下面代碼添加到 src/vuex/actions.js 文件中: 
 
 ```
 export const deleteItem = ({ commit }, id) => {
@@ -238,18 +238,18 @@ export const changeItemNumber = ({ commit }, {id, type}) => {
 
 ```
 
-上面的代码， 实现了购物车的若干功能： 
+上面的代碼， 實現了購物車的若干功能： 
 
-- 对于商品数量的增减
-- 实现了当商品数量改变时，商品总价也跟着修改。 
+- 對於商品數量的增減
+- 實現了當商品數量改變時，商品總價也跟着修改。 
 
 ## 看效果
 
-购物车做好后，点击打开，如下图所示：
+購物車做好後，點擊打開，如下圖所示：
 
-![购物车页面](/images/real_project/cart.png)
+![購物車頁面](/images/real_project/cart.png)
 
-## 总结
+## 總結
 
-- 购物车的数据， 是通过Vuex来保存的
-- 购物车中数量的加减，是需要直接影响到商品总价的。 这个角度来看，用Vuex来做更加适合。
+- 購物車的數據， 是通過Vuex來保存的
+- 購物車中數量的加減，是需要直接影響到商品總價的。 這個角度來看，用Vuex來做更加適合。

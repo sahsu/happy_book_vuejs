@@ -1,16 +1,16 @@
-# Component (组件) 进阶
+# Component (組件) 進階
 
-Component 是非常常见的，在我们的Web开发中，只要是生产环境的项目，就一定会有Component. 
+Component 是非常常見的，在我們的Web開發中，只要是生產環境的項目，就一定會有Component. 
 
-下面就是我们的一个实际项目中的例子， 这个项目我们只做了两个月，里面就发展到了32个component. 如下图所示：
+下面就是我們的一個實際項目中的例子， 這個項目我們只做了兩個月，裏面就發展到了32個component. 如下圖所示：
 
-![实际项目中的component](./images/components_in_real_project.png)
+![實際項目中的component](./images/components_in_real_project.png)
 
-很多时候，我们甚至会看到 一个 component 中嵌套着另一个， 这个component再嵌套另外5个.... 
+很多時候，我們甚至會看到 一個 component 中嵌套着另一個， 這個component再嵌套另外5個.... 
 
 例如： 
 
-`popup-picker` 这个component中，看起来是这样的: 
+`popup-picker` 這個component中，看起來是這樣的: 
 
 ```
 <template>
@@ -39,37 +39,37 @@ import Popup from '../popup'
 </script>
 ```
 
-可以看到，这个component中，还包含了另外两个，一个是`popup`, 一个是 `picker`.  
+可以看到，這個component中，還包含了另外兩個，一個是`popup`, 一個是 `picker`.  
 
-这个时候，新人往往会眼花缭乱。 如果看到 `this.$emit` ， 就更晕了。 
+這個時候，新人往往會眼花繚亂。 如果看到 `this.$emit` ， 就更暈了。 
 
-所以，要做好实际项目，同学们一定要学好本章。 
+所以，要做好實際項目，同學們一定要學好本章。 
 
-## Component 命名规则
+## Component 命名規則
 
-每个component 的命名，官方建议使用 小写字母 + 横线的形式，例如：
+每個component 的命名，官方建議使用 小寫字母 + 橫線的形式，例如：
 
 ```
 Vue.component('my-component-name', { /* ... */ })
 ```
 
-这个是符合W3C的规范的。
+這個是符合W3C的規範的。
 
-也可以定义为： 
+也可以定義爲： 
 
 ```
 Vue.component('MyComponentName', { /* ... */ })
 ```
 
-这个时候，可以使用 `<MyComponentName/>` 来调用，也可以使用 `<my-component-name/>` 来调用。
+這個時候，可以使用 `<MyComponentName/>` 來調用，也可以使用 `<my-component-name/>` 來調用。
 
-## Prop 命名规则
+## Prop 命名規則
 
-同 component， 建议使用 小写字母 + '-' 连接。
+同 component， 建議使用 小寫字母 + '-' 連接。
 
-## Prop 可以有多种类型。 
+## Prop 可以有多種類型。 
 
-下面是一个例子，可以看出，一个component的 prop 可以有多种类型， 包括： 字符串，数字，bool, 数组，和 Object. 
+下面是一個例子，可以看出，一個component的 prop 可以有多種類型， 包括： 字符串，數字，bool, 數組，和 Object. 
 
 ```
 props: {
@@ -84,18 +84,18 @@ props: {
 }
 ```
 
-## 可以动态为 prop 赋值
+## 可以動態爲 prop 賦值
 
-例如，这是个静态的赋值：
-
-```
-<blog-post title="Vuejs的学习笔记"></blog-post>
-```
-
-这是个动态的赋值：
+例如，這是個靜態的賦值：
 
 ```
-// 1. 在script中定义
+<blog-post title="Vuejs的學習筆記"></blog-post>
+```
+
+這是個動態的賦值：
+
+```
+// 1. 在script中定義
 post = {
 	title: 'Triple body',
 	author: {
@@ -108,11 +108,11 @@ post = {
 <blog-post v-bind:title="post.title + 'by' + post.author.name"></blog-post>
 ```
 
-赋值的时候，只要是符合标准的类型，都可以传入（包括String, bool, array 等）. 
+賦值的時候，只要是符合標準的類型，都可以傳入（包括String, bool, array 等）. 
 
-## 使用Object来为Prop赋值
+## 使用Object來爲Prop賦值
 
-假设，我们定义有：
+假設，我們定義有：
 
 ```
 post = {
@@ -123,29 +123,29 @@ post = {
 }
 ```
 
-那么，下面的代码：
+那麼，下面的代碼：
 
 ```
 <blog-post v-bind:author></blog-post>
 ```
 
-等价于：
+等價於：
 
 ```
 <blog-post v-bind:name="author.name" v-bind:sex="author.sex"></blog-post>
 ```
 
-## 单向的数据流
+## 單向的數據流
 
-当“父页面” 引用一个“子组件”时， 如果父页面中的变量发生了变化，那么对应的“子组件”也会发生页面的更新。  
+當“父頁面” 引用一個“子組件”時， 如果父頁面中的變量發生了變化，那麼對應的“子組件”也會發生頁面的更新。  
 
-反之则不行。
+反之則不行。
 
-## Prop的验证
+## Prop的驗證
 
-Vuejs 的组件的Prop , 是可以被验证的。 如果验证不匹配，浏览器的 console就会弹出警告（warning). 这个对于我们的开发非常有利。
+Vuejs 的組件的Prop , 是可以被驗證的。 如果驗證不匹配，瀏覽器的 console就會彈出警告（warning). 這個對於我們的開發非常有利。
 
-我们下面的代码： 
+我們下面的代碼： 
 
 ```
 Vue.component('my-component', {
@@ -163,12 +163,12 @@ Vue.component('my-component', {
 
 可以看得出，
 
-name: 必须是字符串
-sexandheight: 必须是个数组。 第一个元素是String, 第二个元素是Number
-weight: 必须是Number
-sex: 是个String, 默认值是 'male'
+name: 必須是字符串
+sexandheight: 必須是個數組。 第一個元素是String, 第二個元素是Number
+weight: 必須是Number
+sex: 是個String, 默認值是 'male'
 
-支持的类型有： 
+支持的類型有： 
 
 - String
 - Number
@@ -179,33 +179,33 @@ sex: 是个String, 默认值是 'male'
 - Function
 - Symbol
 
-## Non Prop (非Prop) 的属性
+## Non Prop (非Prop) 的屬性
 
-很多时候，component的作者无法预见到应该用哪些属性， 所以Vuejs在设计的时候，就支持让 component接受一些没有预先定义的 prop.  例如：
+很多時候，component的作者無法預見到應該用哪些屬性， 所以Vuejs在設計的時候，就支持讓 component接受一些沒有預先定義的 prop.  例如：
 
 ```
 Vue.component('my-component', {
 	props: ['title']
 })
 
-<my-component title='三体' second-title='第二册： 黑暗森林'></my-component>
+<my-component title='三體' second-title='第二冊： 黑暗森林'></my-component>
 ```
 
-上面的 `title` 就是预先定义的 "Prop",  `second-title` 就是“非Prop”
+上面的 `title` 就是預先定義的 "Prop",  `second-title` 就是“非Prop”
 
-我们想传递一个 non-pro, 非常简单， prop 怎么传， non-prop 就怎么传。
+我們想傳遞一個 non-pro, 非常簡單， prop 怎麼傳， non-prop 就怎麼傳。
 
-## 对于Attribute的合并和替换
+## 對於Attribute的合併和替換
 
-如果component中定义了一个 attribute,  例如： 
+如果component中定義了一個 attribute,  例如： 
 
 ```
 <template>
-	<div color="red">我的最终颜色是蓝色</div>
+	<div color="red">我的最終顏色是藍色</div>
 </template>
 ```
 
-如果在引用了这个“子组件”的“父页面”中，也定义了同样的attribute, 例如：
+如果在引用了這個“子組件”的“父頁面”中，也定義了同樣的attribute, 例如：
 
 ```
 <div>
@@ -213,15 +213,15 @@ Vue.component('my-component', {
 </div>
 ```
 
-那么，父页面传递进来的 `color="blue"` 就会替换子组件中的 `color="red"`
+那麼，父頁面傳遞進來的 `color="blue"` 就會替換子組件中的 `color="red"`
 
-但是，对于 `class` 和 `style` 是例外的。 对于上面的例子， 如果attribute换成 `class`, 那么最终component中的class的值，就是 "red blue" (发生了合并)
+但是，對於 `class` 和 `style` 是例外的。 對於上面的例子， 如果attribute換成 `class`, 那麼最終component中的class的值，就是 "red blue" (發生了合併)
 
-## 避免 子组件的attribute 被父页面 所影响
+## 避免 子組件的attribute 被父頁面 所影響
 
-根据上面的小结， 我们知道了 “父页面”的值总会“替换” “子组件”中的同名attribute .
+根據上面的小結， 我們知道了 “父頁面”的值總會“替換” “子組件”中的同名attribute .
 
-如果不希望有这样的情况的话，我们就可以在定义 component的时候， 这样做：
+如果不希望有這樣的情況的話，我們就可以在定義 component的時候， 這樣做：
 
 ```
 Vue.component('my-component', {

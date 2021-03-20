@@ -1,10 +1,10 @@
-# Vuejs 渲染页面的过程和原理
+# Vuejs 渲染頁面的過程和原理
 
-只有知道了一个页面是如何被渲染出来的，我们才可以更好的理解框架和调试代码。 下面我们就来仔细看一下这个过程。
+只有知道了一個頁面是如何被渲染出來的，我們纔可以更好的理解框架和調試代碼。 下面我們就來仔細看一下這個過程。
 
-## 渲染过程1. js入口文件
+## 渲染過程1. js入口文件
 
-最初的最初，我们要知道  `./build/webpack.base.conf.js` 这个文件，是webpack打包的主要配置文件. 一个典型的代码如下：
+最初的最初，我們要知道  `./build/webpack.base.conf.js` 這個文件，是webpack打包的主要配置文件. 一個典型的代碼如下：
 
 ```
 var path = require('path')
@@ -68,25 +68,25 @@ module.exports = {
 
 ```
 
-在上面的代码中，
+在上面的代碼中，
 
 ```
 module.exports = {
   entry : {
-    app: './src/main.js'   // 这里就定义了Vuejs的入口文件
+    app: './src/main.js'   // 這裏就定義了Vuejs的入口文件
   }
 }
 ```
 
-很重要， 其中的 `app: './src/main.js'` 就定义了Vuejs的入口文件
+很重要， 其中的 `app: './src/main.js'` 就定義了Vuejs的入口文件
 
-知道了这个打包文件，我们就可以知道接下来的事儿了。
+知道了這個打包文件，我們就可以知道接下來的事兒了。
 
-## 渲染过程2. 静态的HTML页面： index.html
+## 渲染過程2. 靜態的HTML頁面： index.html
 
-因为我们每次打开的都是 'http://localhost/#/', 实际上打开的文件是 'http://localhost/#/index.html'
+因爲我們每次打開的都是 'http://localhost/#/', 實際上打開的文件是 'http://localhost/#/index.html'
 
-所以找到`index.html` ，可以看到它的内容如下；
+所以找到`index.html` ，可以看到它的內容如下；
 
 ```
 <!DOCTYPE html>
@@ -101,13 +101,13 @@ module.exports = {
 </html>
 ```
 
-这里的  `<div id="app"></div>`, 就是将来会动态变化的内容。特别类似于 Rails的 layout（模板文件）. 
+這裏的  `<div id="app"></div>`, 就是將來會動態變化的內容。特別類似於 Rails的 layout（模板文件）. 
 
-这个index.html 文件是最外层的 模板。 
+這個index.html 文件是最外層的 模板。 
 
-## 渲染过程3. main.js 中的 Vue定义
+## 渲染過程3. main.js 中的 Vue定義
 
-我们回头看 `src/main.js`， 它的内容如下；
+我們回頭看 `src/main.js`， 它的內容如下；
 
 ```
 import Vue from 'vue'
@@ -120,16 +120,16 @@ Vue.config.productionTip = false
 Vue.http.options.emulateJSON = true;
 
 new Vue({
-  el: '#app',   // 这里, #app 对应着 <div id=app></div>
+  el: '#app',   // 這裏, #app 對應着 <div id=app></div>
   router,
   template: '<App/>',
-  components: { App }  // 这里, App就是 ./src/App.vue
+  components: { App }  // 這裏, App就是 ./src/App.vue
 })
 ```
 
-熟悉 jquery, css selector的同学可以看到， `el: '#app'` 就是 `index.html` 中的 `<div id= app>`
+熟悉 jquery, css selector的同學可以看到， `el: '#app'` 就是 `index.html` 中的 `<div id= app>`
 
-注意上面的 `App.vue`,  它会被 `main.js`  加载， App.vue的内容如下：
+注意上面的 `App.vue`,  它會被 `main.js`  加載， App.vue的內容如下：
 
 ```
 <template>
@@ -143,19 +143,19 @@ new Vue({
 </style>
 ```
 
-上面代码中的 `<template/>`,  这个就是第二层的模板。 可以认为该页面的内容，就是在这个位置被渲染出来的。
+上面代碼中的 `<template/>`,  這個就是第二層的模板。 可以認爲該頁面的內容，就是在這個位置被渲染出來的。
 
-上面的代码中，还有个 `<div id = 'app'>...</div>`, 这个元素跟`index.html`中的是同一个元素（暂且这么理解）
+上面的代碼中，還有個 `<div id = 'app'>...</div>`, 這個元素跟`index.html`中的是同一個元素（暫且這麼理解）
 
-所有的 `<router-view>`中的内容，都会被自动替换。
+所有的 `<router-view>`中的內容，都會被自動替換。
 
-`<script>` 中的代码则是脚本代码。 至此，整个过程就出来了。
+`<script>` 中的代碼則是腳本代碼。 至此，整個過程就出來了。
 
 ## 原理
 
-Vuejs 就是最典型的Ajax 工作方式:  只渲染部分页面.
+Vuejs 就是最典型的Ajax 工作方式:  只渲染部分頁面.
 
-浏览器的页面从来不会整体刷新. 所有的页面变化都限定在 `index.html` 中的`<div id="app"></div>`代码中，如下图所示:
+瀏覽器的頁面從來不會整體刷新. 所有的頁面變化都限定在 `index.html` 中的`<div id="app"></div>`代碼中，如下圖所示:
 
 ```
 <!DOCTYPE html>
@@ -165,24 +165,24 @@ Vuejs 就是最典型的Ajax 工作方式:  只渲染部分页面.
     <title>演示Vue的demo</title>
   </head>
   <body>
-    <div id="app"></div>   <!-- 都在这一行 -->
+    <div id="app"></div>   <!-- 都在這一行 -->
   </body>
 </html>
 ```
 
-所有的动作,可以靠 url来触发, 例如:
+所有的動作,可以靠 url來觸發, 例如:
 
-- `/#/books_list` 对应 某个列表页
+- `/#/books_list` 對應 某個列表頁
 
-- `/#/books/3` 对应某个详情页
+- `/#/books/3` 對應某個詳情頁
 
-这个技术，就是靠 vuejs 的核心组件 `vue-router` 来实现的。  
+這個技術，就是靠 vuejs 的核心組件 `vue-router` 來實現的。  
 
-## 不使用router的技术：QQ邮箱
+## 不使用router的技術：QQ郵箱
 
-QQ邮箱是属于: url无法跟某个页面一一对应的项目.
+QQ郵箱是屬於: url無法跟某個頁面一一對應的項目.
 
-所有页面的跳转,都无法根据url 来判断
+所有頁面的跳轉,都無法根據url 來判斷
 
-最大的特点： 无法保存页面的状态， 难以调试， 无法根据url直接进入某个页面。
+最大的特點： 無法保存頁面的狀態， 難以調試， 無法根據url直接進入某個頁面。
 

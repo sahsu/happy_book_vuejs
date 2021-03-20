@@ -1,26 +1,26 @@
-# js的作用域 与 this
+# js的作用域 與 this
 
-无论是 javascript, 还是 emscript, 变量的作用域都属于高级知识。 我们想考察一个js程序员的水平如何，可以直接用作用域来提问。 
+無論是 javascript, 還是 emscript, 變量的作用域都屬於高級知識。 我們想考察一個js程序員的水平如何，可以直接用作用域來提問。 
 
-同时，我们在实际的开发中发现，很多js/emscript 的新人，对于作用域和 this 都很含混，所以这里要单独的提一下。
+同時，我們在實際的開發中發現，很多js/emscript 的新人，對於作用域和 this 都很含混，所以這裏要單獨的提一下。
 
 ## 作用域
 
-无论是 javascript, 还是 emscript, 对于作用域的使用基本是一样的。 后者更加严密一些。 我们看几个例子。
+無論是 javascript, 還是 emscript, 對於作用域的使用基本是一樣的。 後者更加嚴密一些。 我們看幾個例子。
 
-1.全局变量, 可以直接引用。 
+1.全局變量, 可以直接引用。 
 
 ```
-//全局变量 a:
+//全局變量 a:
 var a = 1;
 function one() {
   console.info(a) 
 }
 ```
 
-打印结果是 1 
+打印結果是 1 
 
-2.函数内的普通变量
+2.函數內的普通變量
 
 ```
 function two(a ){
@@ -28,11 +28,11 @@ function two(a ){
 }
 ```
 
-运行： 
+運行： 
 
-`two(2)` 打印结果是 ：  `a is 2` 
+`two(2)` 打印結果是 ：  `a is 2` 
 
-3.普通函数可以对全局变量做赋值。 如下图所示：
+3.普通函數可以對全局變量做賦值。 如下圖所示：
 
 ```
 var a = 1;
@@ -43,22 +43,22 @@ function four(){
 }
 ```
 
-运行： 
+運行： 
 
 ```
 four(4)
 ```
 
-结果： 
+結果： 
 
 ```
-in four, before a=4: 1     ( 这个是符合正常的scope逻辑的。)
-in four, after a=4: 4      ( 这个也是符合)
+in four, before a=4: 1     ( 這個是符合正常的scope邏輯的。)
+in four, after a=4: 4      ( 這個也是符合)
 ```
 
-再运行： `console.info(a)`, 可以看到输出： `4`  说明 全局变量 `a` 在 four()函数中已经被发生了永久的变化。
+再運行： `console.info(a)`, 可以看到輸出： `4`  說明 全局變量 `a` 在 four()函數中已經被髮生了永久的變化。
 
-4.通过元编程定义的函数
+4.通過元編程定義的函數
 
 ```
 var six = ( function(){
@@ -70,7 +70,7 @@ var six = ( function(){
 )();
 ```
 
-在上述代码中， js解析器会先运行（忽略最后的 `()` )：  
+在上述代碼中， js解析器會先運行（忽略最後的 `()` )：  
 
 ```
 var temp = function(){
@@ -81,7 +81,7 @@ var temp = function(){
 }
 ```
 
-然后再运行：  `var six = (temp)()`  ， 所以， `six` 就是：
+然後再運行：  `var six = (temp)()`  ， 所以， `six` 就是：
 
 ```
 function(){
@@ -89,12 +89,12 @@ function(){
 }
 ```
 
-上面的 `foo` 就是来自于方法最开始定义的 `var foo = 6`, 而这个变量的定义，是在一个 function() 中的。 所以它不是一个全局变量。  
+上面的 `foo` 就是來自於方法最開始定義的 `var foo = 6`, 而這個變量的定義，是在一個 function() 中的。 所以它不是一個全局變量。  
 
-所以，如果我们在console中输入 `foo` , 会看到报错消息： `Uncaught ReferenceError: foo is not defined`
+所以，如果我們在console中輸入 `foo` , 會看到報錯消息： `Uncaught ReferenceError: foo is not defined`
 
 
-5.通过元编程定义的函数中的变量，不会污染全局变量。
+5.通過元編程定義的函數中的變量，不會污染全局變量。
 
 ```
 var foo = 1;
@@ -108,9 +108,9 @@ var six = ( function(){
 )();
 ```
 
-在上面的代码中，我们先定义了一个 全局变量 `foo`, 再定义了一个方法 `six`, 里面定义了一个临时方法 `foo`.   并且进行来了一些操作。 
+在上面的代碼中，我們先定義了一個 全局變量 `foo`, 再定義了一個方法 `six`, 裏面定義了一個臨時方法 `foo`.   並且進行來了一些操作。 
 
-运行：
+運行：
 
 ```
 six()   // 返回：   in six, foo is: 6
@@ -121,11 +121,11 @@ foo     // 返回： 1
 
 ## this
 
-对于 `this` 的使用， 在这里 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this  指出了对于javascript中this的详细用法。  
+對於 `this` 的使用， 在這裏 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this  指出了對於javascript中this的詳細用法。  
 
-在emscript中也基本是一样的。
+在emscript中也基本是一樣的。
 
-简单的说，大家只要记得， `this` 指的是当前作用域的对象实例就好了。
+簡單的說，大家只要記得， `this` 指的是當前作用域的對象實例就好了。
 
 ```
 var apple = {
@@ -136,14 +136,14 @@ var apple = {
 }
 ```
 
-我们输入  `apple.show_color` 就可以看到输出 `red`.   这里的 `this` 指的就是 `apple` 变量。
+我們輸入  `apple.show_color` 就可以看到輸出 `red`.   這裏的 `this` 指的就是 `apple` 變量。
 
 
-## 实战经验
+## 實戰經驗
 
-### 1.在Vue的方法定义中容易用错。
+### 1.在Vue的方法定義中容易用錯。
 
-当我们发现 代码看起来没问题， 但是console 总报错说 xx undefined 时， 十有八九就是 忘记加 this 了。
+當我們發現 代碼看起來沒問題， 但是console 總報錯說 xx undefined 時， 十有八九就是 忘記加 this 了。
 
 例如： 
 
@@ -156,22 +156,22 @@ var apple = {
 	<div id='app'>
 		{{ message }}
 		<br/>
-		<button v-on:click='highlight' style='margin-top: 50px'>真的吗</button>
+		<button v-on:click='highlight' style='margin-top: 50px'>真的嗎</button>
 	</div>
 
 	<script>
 		var app = new Vue({
 			el: '#app', 
 			data: {
-				message: 'this 是很重要的。 不要忘记它哟~'
+				message: 'this 是很重要的。 不要忘記它喲~'
 			},
 			methods:  {
 				highlight: function() {
-					// 报错：  message is not defined. 
-					message += '是的， 工资还会涨~!'
+					// 報錯：  message is not defined. 
+					message += '是的， 工資還會漲~!'
 
-					// 正确的代码应该是：
-					// this.message += '是的， 工资还会涨~!'
+					// 正確的代碼應該是：
+					// this.message += '是的， 工資還會漲~!'
 				}
 			}
 
@@ -181,16 +181,16 @@ var apple = {
 </html>
 ```
 
-使用浏览器加载上述代码，我们会发现报错了：
+使用瀏覽器加載上述代碼，我們會發現報錯了：
 
-![this的错误用法](./images/scope_without_this.png)
+![this的錯誤用法](./images/scope_without_this.png)
 
-上面的代码中， `message += ...` 那一行中， `message` 是当前的vue的实例的一个"property"(属性)， 而我们如果希望在 `methods` 中引用这个属性的话，
-就需要用 `this.message` 才对。 这里的 `this` 对应的就是  `var app = new Vue()` 中定义的 `app`. 
+上面的代碼中， `message += ...` 那一行中， `message` 是當前的vue的實例的一個"property"(屬性)， 而我們如果希望在 `methods` 中引用這個屬性的話，
+就需要用 `this.message` 纔對。 這裏的 `this` 對應的就是  `var app = new Vue()` 中定義的 `app`. 
 
-### 2.在发起http请求时容易用错
+### 2.在發起http請求時容易用錯
 
-我们看下面的例子，是一段代码片段：
+我們看下面的例子，是一段代碼片段：
 
 ```
 new Vue({
@@ -202,7 +202,7 @@ new Vue({
 			let that = this
 			axios.get('http://mysite.com/my_api.do')
 			.then(function(response){
-	            // 这里不能使用 this.cities 来赋值
+	            // 這裏不能使用 this.cities 來賦值
 			    that.cities = response.data.result
 			})
 		}	
@@ -211,19 +211,19 @@ new Vue({
 
 ```
 
-在上面的代码中，我们定义了一个属性： `cities`, 定义了一个方法： `my_http_request`.  该方法会向远程发起一个请求， 
-然后把返回的response中的值赋给 `cities`. 
+在上面的代碼中，我們定義了一個屬性： `cities`, 定義了一個方法： `my_http_request`.  該方法會向遠程發起一個請求， 
+然後把返回的response中的值賦給 `cities`. 
 
-可以在上面代码中看到， 需要先在 `axios.get`之前，定义一个变量 `let that = this`.  这个时候， `this` 和 `that` 都处于 "Vue"的实例中。
+可以在上面代碼中看到， 需要先在 `axios.get`之前，定義一個變量 `let that = this`.  這個時候， `this` 和 `that` 都處於 "Vue"的實例中。
 
-但是在 `axios.get(..).then()` 函数中，就不能再使用`this` 了。 因为在 `then(...)` 中，这是个function callback, 其中的 `this` 会代表
-这个 http request event. 这是个事件。  
+但是在 `axios.get(..).then()` 函數中，就不能再使用`this` 了。 因爲在 `then(...)` 中，這是個function callback, 其中的 `this` 會代表
+這個 http request event. 這是個事件。  
 
-所以， 只能用这样的方式。 
+所以， 只能用這樣的方式。 
 
-（如果使用了 emscript 的 `=>` 的话，就可以避免上述问题)
+（如果使用了 emscript 的 `=>` 的話，就可以避免上述問題)
 
-### 3.在event handler中容易用错
+### 3.在event handler中容易用錯
 
 道理同上。 
 

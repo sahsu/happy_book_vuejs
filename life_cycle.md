@@ -1,18 +1,18 @@
-# Vuejs的生命周期
+# Vuejs的生命週期
 
-每个 Vuejs 的实例，都会经历下图的生命周期。
+每個 Vuejs 的實例，都會經歷下圖的生命週期。
 
-![生命周期图](./images/vuejs_lifecycle.png)
+![生命週期圖](./images/vuejs_lifecycle.png)
 
-可以看出，基本周期是：
+可以看出，基本週期是：
 
-1. created       (创建好DOM)
-2. mounted       (页面基本准备好了。)
-3. updated       (update 可以理解成人肉手动操作触发)
-4. destroyed    （销毁)
+1. created       (創建好DOM)
+2. mounted       (頁面基本準備好了。)
+3. updated       (update 可以理解成人肉手動操作觸發)
+4. destroyed    （銷燬)
  
-上面步骤中的 1,3,4都是自动触发。 每个步骤都有对应的 beforeXyz方法
+上面步驟中的 1,3,4都是自動觸發。 每個步驟都有對應的 beforeXyz方法
 
-所以, 我们一般使用 `mounted` 作为页面初始化时执行的方法
+所以, 我們一般使用 `mounted` 作爲頁面初始化時執行的方法
 
 

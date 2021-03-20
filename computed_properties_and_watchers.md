@@ -1,6 +1,6 @@
-# 使用Computed properties(计算得到的属性)和watchers(监听器) 
+# 使用Computed properties(計算得到的屬性)和watchers(監聽器) 
 
-很多时候，我们在页面上想要显示某个变量的值时，都需要经过一些计算， 例如： 
+很多時候，我們在頁面上想要顯示某個變量的值時，都需要經過一些計算， 例如： 
 
 ```
 <div id="example">
@@ -8,11 +8,11 @@
 </div>
 ```
 
-越是复杂，到后期越容易出错。 
+越是複雜，到後期越容易出錯。 
 
-这个时候，我们就需要一种机制，可以方便的创建这样的通过计算得来的数据。  
+這個時候，我們就需要一種機制，可以方便的創建這樣的通過計算得來的數據。  
 
-所以， Computed Properties 就是我们的解决方案。
+所以， Computed Properties 就是我們的解決方案。
 
 ## 典型例子
 
@@ -24,7 +24,7 @@
 <body>
 	<div id='app'>
 		<p> 原始字符串： {{my_text}} </p>
-		<p> 通过运算后得到的字符串： {{my_computed_text}} </p>
+		<p> 通過運算後得到的字符串： {{my_computed_text}} </p>
 	</div>
 	<script>
 		var app = new Vue({
@@ -34,7 +34,7 @@
 			},
 			computed: {
 				my_computed_text: function(){
-					// 先去掉逗号，然后按照空格分割成数组，然后翻转，并用'-'来连接
+					// 先去掉逗號，然後按照空格分割成數組，然後翻轉，並用'-'來連接
 					return this.my_text.replace(',', '').split(' ').reverse().join('-')
 				}
 			}
@@ -45,30 +45,30 @@
 </html>
 ```
 
-可以看到，上面的关键代码是，在 Vue的构造函数中， 传入一个 `computed`的段落。 
+可以看到，上面的關鍵代碼是，在 Vue的構造函數中， 傳入一個 `computed`的段落。 
 
-使用浏览器运行后，可以看到结果如下图所示：
+使用瀏覽器運行後，可以看到結果如下圖所示：
 
 ![computed properties例子](./images/computed_properties.png)
 
-我们也打开 console 来查看。 
+我們也打開 console 來查看。 
 
-输入
+輸入
 ```
 > app.my_text    
 ```
-会得到：  "good good study, day day up"
+會得到：  "good good study, day day up"
 
-输入
+輸入
 
 ```
 > app.my_computed_text
 ```
-会得到转换后的： "up-day-day-study-good-good"
+會得到轉換後的： "up-day-day-study-good-good"
 
-## Computed Properties 与 普通方法的区别。
+## Computed Properties 與 普通方法的區別。
 
-根据上面的例子，我们可以使用 普通方法来实现： 
+根據上面的例子，我們可以使用 普通方法來實現： 
 
 ```
 <html>
@@ -78,7 +78,7 @@
 <body>
 	<div id='app'>
 		<p> 原始字符串： {{my_text}} </p>
-		<p> 通过运算后得到的字符串： {% raw %}{{{% endraw %}my_computed_text() }} </p>
+		<p> 通過運算後得到的字符串： {% raw %}{{{% endraw %}my_computed_text() }} </p>
 	</div>
 	<script>
 		var app = new Vue({
@@ -88,7 +88,7 @@
 			},
 			methods: {
 				my_computed_text: function(){
-					return this.my_text.replace(',', '').split(' ').reverse().join('-') + '，我来自于 function, 不是computed '
+					return this.my_text.replace(',', '').split(' ').reverse().join('-') + '，我來自於 function, 不是computed '
 				}
 			}
 		})
@@ -97,25 +97,25 @@
 </html>
 ```
 
-上面的代码，运行后如下图所示： 
+上面的代碼，運行後如下圖所示： 
 
 ![使用function代替computed properties](./images/computed_properties_use_function.png)
 
-可以发现，他们达到的效果是一样的。 
+可以發現，他們達到的效果是一樣的。 
 
-他们的区别在于：  使用computed properties的方式，会把结果“缓存”起来。  每次调用对应的computed properties时，只要对应的依赖数据没有改动， 
-那么就不会变化。 
+他們的區別在於：  使用computed properties的方式，會把結果“緩存”起來。  每次調用對應的computed properties時，只要對應的依賴數據沒有改動， 
+那麼就不會變化。 
 
-而使用 "function" 实现的版本，则不存在缓存问题。 每次都会重新计算对应的数值。 
+而使用 "function" 實現的版本，則不存在緩存問題。 每次都會重新計算對應的數值。 
 
-所以， 我们需要按照实际情况，来选择是使用 "computed properties" ， 还是使用普通function的形式。
+所以， 我們需要按照實際情況，來選擇是使用 "computed properties" ， 還是使用普通function的形式。
 
 
 ## watched property
 
-Vuejs 中的property(属性)， 是可以要么根据计算发生变化（computed) , 要么根据监听（watch)其他的变量的变化而发生变化
+Vuejs 中的property(屬性)， 是可以要麼根據計算髮生變化（computed) , 要麼根據監聽（watch)其他的變量的變化而發生變化
 
-我们看一下，如何根据监听（watch) 其他的变量而自身发生变化的例子， 如下；
+我們看一下，如何根據監聽（watch) 其他的變量而自身發生變化的例子， 如下；
 
 
 ```
@@ -126,20 +126,20 @@ Vuejs 中的property(属性)， 是可以要么根据计算发生变化（comput
 <body>
 	<div id='app'>
 		<p> 
-			我所在的城市： <input v-model='city' />（这是个watched property)
+			我所在的城市： <input v-model='city' />（這是個watched property)
 		</p>
 		<p> 
-			我所在的街道： <input v-model='district' />（这是个watched property)
+			我所在的街道： <input v-model='district' />（這是個watched property)
 		</p>
-		<p> 我所在的详细一些的地址： {{full_address}} （每次其他两个发生变化，这里就会跟着变化) </p>
+		<p> 我所在的詳細一些的地址： {{full_address}} （每次其他兩個發生變化，這裏就會跟着變化) </p>
 	</div>
 	<script>
 		var app = new Vue({
 			el: '#app',
 			data: {
 				city: '北京市',
-				district: '朝阳区',
-				full_address: "某市某区"
+				district: '朝陽區',
+				full_address: "某市某區"
 			},
 			watch: {
 				city: function(city_name){
@@ -156,21 +156,21 @@ Vuejs 中的property(属性)， 是可以要么根据计算发生变化（comput
 </html>
 ```
 
-在上面的代码中， 可以看到， `watch: { city: ..., district: ...}`, 表示， `city` 和 `district` 都已经被监听了， 这两个都是 `watched properties`.
+在上面的代碼中， 可以看到， `watch: { city: ..., district: ...}`, 表示， `city` 和 `district` 都已經被監聽了， 這兩個都是 `watched properties`.
 
-只要`city` 和 `district`发生变化， `full_address` 就会跟着变化。 
+只要`city` 和 `district`發生變化， `full_address` 就會跟着變化。 
 
-我们用浏览器打开上面的代码，如下图所示，此时 由于 `city` 和`district` 还没有发生变化，所以 `full_address`的值还是 "某市某区" ： 
+我們用瀏覽器打開上面的代碼，如下圖所示，此時 由於 `city` 和`district` 還沒有發生變化，所以 `full_address`的值還是 "某市某區" ： 
 
-![被监听的属性](./images/watched_property.png)
+![被監聽的屬性](./images/watched_property.png)
 
-当我在 “街道” 的输入框， 后面加上 “望京街道” 几个字后，可以看到， 下面的“详细地址”， 就发生了变化。 如下图所示： 
+當我在 “街道” 的輸入框， 後面加上 “望京街道” 幾個字後，可以看到， 下面的“詳細地址”， 就發生了變化。 如下圖所示： 
 
-![发生了变化的监听属性](./images/watched_property_2.png)
+![發生了變化的監聽屬性](./images/watched_property_2.png)
 
-### 使用computed 会比watch 更加简洁
+### 使用computed 會比watch 更加簡潔
 
-上面的例子，我们可以使用 `computed` 来改写， 如下图所示： 
+上面的例子，我們可以使用 `computed` 來改寫， 如下圖所示： 
 
 ```
 <html>
@@ -185,7 +185,7 @@ Vuejs 中的property(属性)， 是可以要么根据计算发生变化（comput
 		<p> 
 			我所在的街道： <input v-model='district' />
 		</p>
-		<p> 我所在的详细一些的地址： {{full_address}} （这是使用computed 实现的版本) </p>
+		<p> 我所在的詳細一些的地址： {{full_address}} （這是使用computed 實現的版本) </p>
 
 	</div>
 	<script>
@@ -193,7 +193,7 @@ Vuejs 中的property(属性)， 是可以要么根据计算发生变化（comput
 			el: '#app',
 			data: {
 				city: '北京市',
-				district: '朝阳区',
+				district: '朝陽區',
 			},
 			computed: {
 				full_address: function(){
@@ -206,15 +206,15 @@ Vuejs 中的property(属性)， 是可以要么根据计算发生变化（comput
 </html>
 ```
 
-可以看到， 方法少了一个 ， `data`中定义的属性也少了一个，简洁了不少。 代码简洁，维护起来就容易（代码量越少，程序越好理解）
+可以看到， 方法少了一個 ， `data`中定義的屬性也少了一個，簡潔了不少。 代碼簡潔，維護起來就容易（代碼量越少，程序越好理解）
 
-## 为 computed property 的setter （赋值函数) 
+## 爲 computed property 的setter （賦值函數) 
 
-原则上来说， computed property 是根据其他的值，经过计算得来的。 是不应该被修改的。
+原則上來說， computed property 是根據其他的值，經過計算得來的。 是不應該被修改的。
 
-不过在开发中，确实有一些情况，需要对 "computed property" 做修改， 同时影响某些对应的属性。 （过程跟上面是相反的） . 
+不過在開發中，確實有一些情況，需要對 "computed property" 做修改， 同時影響某些對應的屬性。 （過程跟上面是相反的） . 
 
-我们看下面的代码： 
+我們看下面的代碼： 
 
 
 ```
@@ -230,7 +230,7 @@ Vuejs 中的property(属性)， 是可以要么根据计算发生变化（comput
 		<p> 
 			我所在的街道： <input v-model='district' />
 		</p>
-		<p> 我所在的详细一些的地址：	<input v-model='full_address' /> </p>
+		<p> 我所在的詳細一些的地址：	<input v-model='full_address' /> </p>
 
 	</div>
 	<script>
@@ -238,7 +238,7 @@ Vuejs 中的property(属性)， 是可以要么根据计算发生变化（comput
 			el: '#app',
 			data: {
 				city: '北京市',
-				district: '朝阳区',
+				district: '朝陽區',
 			},
 			computed: {
 				full_address: {
@@ -257,7 +257,7 @@ Vuejs 中的property(属性)， 是可以要么根据计算发生变化（comput
 </html>
 ```
 
-可以看出， 上面代码中，有这样一段：
+可以看出， 上面代碼中，有這樣一段：
 
 ```
 computed: {
@@ -273,9 +273,9 @@ computed: {
 }
 ```			
 
-可以看出， 上面的 `get` 代码段，就是原来的代码内容。 而 `set`端中，则定义了，如果 computed property (也就是 full_address) 发生变化的时候， 
-`city` 和 `district` 的值应该如何变化。 
+可以看出， 上面的 `get` 代碼段，就是原來的代碼內容。 而 `set`端中，則定義了，如果 computed property (也就是 full_address) 發生變化的時候， 
+`city` 和 `district` 的值應該如何變化。 
 
-用浏览器打开后， 我们在 “最下方的输入框” 中，后面输入一些字，可以看到， 对应的 “街道”发生了变化： 
+用瀏覽器打開後， 我們在 “最下方的輸入框” 中，後面輸入一些字，可以看到， 對應的 “街道”發生了變化： 
 
-![根据setter影响其他变量的例子](./images/computed_setter.png)
+![根據setter影響其他變量的例子](./images/computed_setter.png)

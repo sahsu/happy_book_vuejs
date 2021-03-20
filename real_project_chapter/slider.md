@@ -1,12 +1,12 @@
-# 轮播图
+# 輪播圖
 
-用户登录到首页之后， 第一个看到的内容，就是轮播图。 (见前面的原型图)
+用戶登錄到首頁之後， 第一個看到的內容，就是輪播圖。 (見前面的原型圖)
 
-所以，我们接下来，要为首页增加它。  
+所以，我們接下來，要爲首頁增加它。  
 
 ## 1. 增加路由
 
-路由文件(src/router/index.js)，对应位置，增加： 
+路由文件(src/router/index.js)，對應位置，增加： 
 
 ```
 import Index from '@/views/shops/index'
@@ -23,7 +23,7 @@ export default new Router({
   ]
 ```
 
-## 2. 增加对应页面
+## 2. 增加對應頁面
 
 src/views/shops/index.vue
 
@@ -32,9 +32,9 @@ src/views/shops/index.vue
   <div class="background">
     <div class="home">
       <div class="m_layout">
-        <!-- 轮播图-->
+        <!-- 輪播圖-->
         <HomeBannerView></HomeBannerView>
-        <!--导航-->
+        <!--導航-->
         <HomeNavView></HomeNavView>
         
         <span class="divider" style="height: 4px;"></span>
@@ -44,7 +44,7 @@ src/views/shops/index.vue
           </div>
         </div>
         <span class="divider" style="height: 2px;"></span>
-        <!-- 特产商品 -->
+        <!-- 特產商品 -->
         <SpecialMarket :id="good.id" :name="good.name" :description="good.description" :image_url="good.image_url" v-for="good in goods"></SpecialMarket>
       </div>
     </div>
@@ -52,17 +52,17 @@ src/views/shops/index.vue
   </div>
 </template>
 <script>
-    // 轮播图需要的js文件
+    // 輪播圖需要的js文件
     import {bindEvent,scrollPic} from '../../libs/index.js'
-    // 轮播图需要的前台文件
+    // 輪播圖需要的前臺文件
     import HomeBannerView from '../../components/HomeBanner.vue';
-    // 商品分类
+    // 商品分類
     import HomeNavView from '../../components/HomeNav.vue';
 
-    // 特产，商品的列表
+    // 特產，商品的列表
     import SpecialMarket from '../../components/SpecialMarket.vue';
 
-    // 底部4个TAB， 下一节会讲到
+    // 底部4個TAB， 下一節會講到
     import NavBottomView from '../../components/NavBottom.vue';
 
     export default{
@@ -102,36 +102,36 @@ src/views/shops/index.vue
 
 ```
 
-上面的代码中， 
+上面的代碼中， 
 
-- 先是读取了一个API
-- 渲染数据
-- 实现首页的轮播图
-
-
-
-## 3. 增加轮播图
-
-我们做开发的核心方法论： 不要造轮子。 
-
-一定要造轮子的话， 先搜索一下是否已经有了现成的轮子。 
-
-轮播图是最最常见的组件， 所以一定会有别人写好的第三方包， 我们拿过来用就好。 
-
-经过一番考察， 我们发现这个项目不错： 
-
-所以， 直接拿过来用。  
+- 先是讀取了一個API
+- 渲染數據
+- 實現首頁的輪播圖
 
 
-3.1 轮播图的组件
 
-我们需要在src/views/shops/index.vue中，增加： 
+## 3. 增加輪播圖
+
+我們做開發的核心方法論： 不要造輪子。 
+
+一定要造輪子的話， 先搜索一下是否已經有了現成的輪子。 
+
+輪播圖是最最常見的組件， 所以一定會有別人寫好的第三方包， 我們拿過來用就好。 
+
+經過一番考察， 我們發現這個項目不錯： 
+
+所以， 直接拿過來用。  
+
+
+3.1 輪播圖的組件
+
+我們需要在src/views/shops/index.vue中，增加： 
 
 ```
 import {bindEvent,scrollPic} from '../../libs/index.js'
 ```
 
-然后， 增加对应的文件（libs/index.js)
+然後， 增加對應的文件（libs/index.js)
 
 ```
 
@@ -141,13 +141,13 @@ function $id(id) {
 
 function bindEvent() {
     var sea = $id("my_search");
-    /*banner对象*/
+    /*banner對象*/
     var banner = $id("my_banner");
     /*高度*/
     var height = banner.offsetHeight;
     window.onscroll = function() {
         var top = document.body.scrollTop;
-        /*当滚动高度大于banner的高度时候颜色不变*/
+        /*當滾動高度大於banner的高度時候顏色不變*/
         if (top > height) {
             sea.style.background = "rgba(201,21,35,0.85)";
         } else {
@@ -184,10 +184,10 @@ function scrollPic() {
         imgBox.style.webkitTransform = 'translateX(' + t + 'px)';
     }
 
-    // 开始动画部分
+    // 開始動畫部分
     pointBox.children[0].className = "now";
     for (var i = 0; i < ols.length; i++) {
-        ols[i].index = i; // 获得当前第几个小li 的索引号
+        ols[i].index = i; // 獲得當前第幾個小li 的索引號
         ols[i].onmouseover = function() {
             // 所有的都要清空
             for (var j = 0; j < ols.length; j++) {
@@ -202,7 +202,7 @@ function scrollPic() {
         indexx++;
         addTransition();
         setTransfrom(-indexx * width);
-        // 小方块
+        // 小方塊
         square++;
         if (square > ols.length - 1) {
             square = 0;
@@ -212,7 +212,7 @@ function scrollPic() {
         {
             ols[i].className = "";
         }
-        // 留下当前的
+        // 留下當前的
         ols[square].className = "now"; 
     }, 3000);
 
@@ -237,39 +237,39 @@ function scrollPic() {
     }, false);
 
     /**
-     * 触摸事件开始
+     * 觸摸事件開始
      */
     imgBox.addEventListener("touchstart", function(e) {
-        console.log("开始");
+        console.log("開始");
         var event = e || window.event;
-        //记录开始滑动的位置
+        //記錄開始滑動的位置
         startX = event.touches[0].clientX;
     }, false);
 
     /**
-     * 触摸滑动事件
+     * 觸摸滑動事件
      */
     imgBox.addEventListener("touchmove", function(e) {
         console.log("move");
         var event = e || window.event;
         event.preventDefault();
 
-        //清除定时器
+        //清除定時器
         clearInterval(timer);
-        //记录结束位置
+        //記錄結束位置
         endX = event.touches[0].clientX;
-        //记录移动的位置
+        //記錄移動的位置
         moveX = startX - endX;
         removeTransition();
         setTransfrom(-indexx * width - moveX);
     }, false);
 
     /**
-     * 触摸结束事件
+     * 觸摸結束事件
      */
     imgBox.addEventListener("touchend", function() {
         console.log("end");
-        //如果移动的位置大于三分之一，并且是移动过的
+        //如果移動的位置大於三分之一，並且是移動過的
         if (Math.abs(moveX) > (1 / 3 * width) && endX != 0) {
             //向左
             if (moveX > 0) {
@@ -277,10 +277,10 @@ function scrollPic() {
             } else {
                 indexx--;
             }
-            //改变位置
+            //改變位置
             setTransfrom(-indexx * width);
         }
-        //回到原来的位置
+        //回到原來的位置
         addTransition();
         setTransfrom(-indexx * width);
         //初始化
@@ -299,12 +299,12 @@ function scrollPic() {
             {
                 ols[i].className = "";
             }
-            // 留下当前的
+            // 留下當前的
             ols[square].className = "now"; 
             addTransition();
             setTransfrom(-indexx * width);
 
-        // 每3秒钟轮播图变化一次。
+        // 每3秒鐘輪播圖變化一次。
         }, 3000);
     }, false);
 };
@@ -317,24 +317,24 @@ module.exports = {
 ```
 
 
-3.2 轮播图的视图层
+3.2 輪播圖的視圖層
 
 ```
-<!-- 轮播图-->
+<!-- 輪播圖-->
 <HomeBannerView></HomeBannerView>   
 ```
 
-上面的代码， 会直接生成一个轮播图。
+上面的代碼， 會直接生成一個輪播圖。
 
 
-我们创建这个component, 增加： src/components/HomeBanner.vue, 
+我們創建這個component, 增加： src/components/HomeBanner.vue, 
 
 ```
 <template>
 	<div class="home_ban">
 		<div class="m_banner clearfix" id="my_banner">
 	        <ul class="banner_box">
-	            <!-- 更改这里就可以替换轮播图的图片了 -->
+	            <!-- 更改這裏就可以替換輪播圖的圖片了 -->
 	            <li><img src="http://siweitech.b0.upaiyun.com/image/silulegou/2FgHsjCz7qfpSQr0.jpeg" alt="" /></li>
 	            <li><img src="http://siweitech.b0.upaiyun.com/image/silulegou/uJawxX6H3PBRcfMO.jpeg" alt="" /></li>
 	        </ul>
@@ -347,18 +347,18 @@ module.exports = {
 </template>
 ```
 
-这个component的内容非常简单。 它只是一个轮播图组件的View. 我们只需要更换上面代码中的两个图片文件就好了。
+這個component的內容非常簡單。 它只是一個輪播圖組件的View. 我們只需要更換上面代碼中的兩個圖片文件就好了。
 
-## 4. 增加物品分类
+## 4. 增加物品分類
 
 ```
-<!--商品分类-->
+<!--商品分類-->
 <HomeNavView></HomeNavView>
 ```
 
-上面的代码， 会直接生成一个物品分类区域
+上面的代碼， 會直接生成一個物品分類區域
 
-我们创建这个component: 增加： src/components/HomeNav.vue
+我們創建這個component: 增加： src/components/HomeNav.vue
 
 ```
 <template>
@@ -374,7 +374,7 @@ module.exports = {
                     <li class="nav_item">
                         <a href="#" class="nav_item_link">
                             <img src="../assets/images/nav1.png" alt="">
-                            <span>特色干果</span>
+                            <span>特色乾果</span>
                         </a>
                     </li>
                     <li class="nav_item">
@@ -396,24 +396,24 @@ module.exports = {
 
 ```
 
-之所以这样写， 是考虑到前期的商品分类不多。 在下一个版本会改成读取后台的接口。 
+之所以這樣寫， 是考慮到前期的商品分類不多。 在下一個版本會改成讀取後臺的接口。 
 
 
 ## 看效果  
 
-默认页面效果如下：
+默認頁面效果如下：
 
-![图1](/images/real_project/slider_1.png)
+![圖1](/images/real_project/slider_1.png)
 
-三秒钟之后， 轮播图发生了滚动：
+三秒鐘之後， 輪播圖發生了滾動：
 
-![图2](/images/real_project/slider_2.png)
+![圖2](/images/real_project/slider_2.png)
 
-## 总结
+## 總結
 
-我们使用了 现成的轮播图组件。 可以看到， 非常简单。 步骤是：
+我們使用了 現成的輪播圖組件。 可以看到， 非常簡單。 步驟是：
 
-1. 复制对应组件的js 文件到src/lib下。
-2. 复制对应组件的vue文件到src/components下
-3. 在对应的vue文件中使用它们。
+1. 複製對應組件的js 文件到src/lib下。
+2. 複製對應組件的vue文件到src/components下
+3. 在對應的vue文件中使用它們。
 

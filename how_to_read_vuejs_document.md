@@ -1,8 +1,8 @@
-# 如何阅读官方文档
+# 如何閱讀官方文檔
 
-我们在查看vue-js的文档的时候，会发现它跟我们真正使用的项目的代码完全不一样。 例如，vuejs的官方文档的讲解，都是这样：
+我們在查看vue-js的文檔的時候，會發現它跟我們真正使用的項目的代碼完全不一樣。 例如，vuejs的官方文檔的講解，都是這樣：
 
-（完全是把所有代码都写在了js中）
+（完全是把所有代碼都寫在了js中）
 
 ```
 var Child = {
@@ -13,13 +13,13 @@ A custom component!
 new Vue({
   // ...
   components: {
-    //  将只在父模板可用
+    //  將只在父模板可用
     'my-component': Child
   }
 })
 ```
 
-而我们的实际代码是这样：
+而我們的實際代碼是這樣：
 
 ```
 <template>
@@ -32,21 +32,21 @@ new Vue({
 </style>
 ```
 
-原因就在于我们在实际项目中使用了 `vue-loader`, 它可以非常好的帮我们自动加载所有的内容，按照webpacke + vue的约定。
+原因就在於我們在實際項目中使用了 `vue-loader`, 它可以非常好的幫我們自動加載所有的內容，按照webpacke + vue的約定。
 
 ## webpack
 
-webpack就是一种工具，可以把各种js/css/html代码最后打包编译到一起。
+webpack就是一種工具，可以把各種js/css/html代碼最後打包編譯到一起。
 
-Vuejs中已经集成了这个工具， 我们在使用vue-cli的时候，就会根据命令来生成 `webpack`所要求的
-文件结构，然后在打包的时候(`npm run build`) ，vuejs的源代码就会
-被webpack打包成正常的html代码和文件目录。
+Vuejs中已經集成了這個工具， 我們在使用vue-cli的時候，就會根據命令來生成 `webpack`所要求的
+文件結構，然後在打包的時候(`npm run build`) ，vuejs的源代碼就會
+被webpack打包成正常的html代碼和文件目錄。
 
-这个内容我们以后会讲到。大家要知道在本书中所讲的知识，都是"基于
-webpack的vuejs" 。 否则光看vuejs的官方文档，是看不懂的。
+這個內容我們以後會講到。大家要知道在本書中所講的知識，都是"基於
+webpack的vuejs" 。 否則光看vuejs的官方文檔，是看不懂的。
 
-## 官方文档地址
+## 官方文檔地址
 
-https://cn.vuejs.org/  (点击右上角的 translation就可以看到入口）
+https://cn.vuejs.org/  (點擊右上角的 translation就可以看到入口）
 
 

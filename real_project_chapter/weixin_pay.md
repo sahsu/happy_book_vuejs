@@ -1,16 +1,16 @@
 # 微信支付
 
-微信支付，最难的地方不在于技术，而是在于微信有一套自己的技术规范。 
+微信支付，最難的地方不在於技術，而是在於微信有一套自己的技術規範。 
 
-建议每位同学都要从官方文档看起。 虽然市面上有一些集成工具，例如 Ping++ , 但是往往这些产品不是特别方便，收费也比较高昂。 出了问题不好调试。
+建議每位同學都要從官方文檔看起。 雖然市面上有一些集成工具，例如 Ping++ , 但是往往這些產品不是特別方便，收費也比較高昂。 出了問題不好調試。
 
-所以，我们对于核心技术，一定要亲自掌握。 
+所以，我們對於核心技術，一定要親自掌握。 
 
-## 申请微信账号和配置
+## 申請微信賬號和配置
 
-这里就不详述了。 我们假设全部的账号都已经做好了。 
+這裏就不詳述了。 我們假設全部的賬號都已經做好了。 
 
-## 1. 添加支付页面的路由
+## 1. 添加支付頁面的路由
 
 
 ```
@@ -30,14 +30,14 @@ export default new Router({
 })
 ```
 
-## 2. 添加vue页面
+## 2. 添加vue頁面
 
 ```
 <template>
   <div class="background">
     <header class="top_bar">
       <a onclick="window.history.go(-1)" class="icon_back"></a>
-      <h3 class="cartname">订单支付</h3>
+      <h3 class="cartname">訂單支付</h3>
     </header>
 
     <div class="tast_list_bd" style="background-color: #F3F3F3; padding-top: 0; padding-bottom: 80px;">
@@ -48,26 +48,26 @@ export default new Router({
 
             <form style="margin-top: 45px;">
                 <div class="column is-12">
-                    <label class="label">收货人</label>
+                    <label class="label">收貨人</label>
                     <p class="control has-icon has-icon-right">
-                    <input name="name" v-model="mobile_user_name" v-validate="'required|required'" :class="{'input': true, 'is-danger': errors.has('name') }" type="text" placeholder="例如: 张三" autofocus="autofocus"/>
-                    <span v-show="errors.has('name')" class="help is-danger">收货人不能为空</span>
+                    <input name="name" v-model="mobile_user_name" v-validate="'required|required'" :class="{'input': true, 'is-danger': errors.has('name') }" type="text" placeholder="例如: 張三" autofocus="autofocus"/>
+                    <span v-show="errors.has('name')" class="help is-danger">收貨人不能爲空</span>
                     </p>
                 </div>
 
                 <div class="column is-12">
-                    <label class="label">收货地址</label>
+                    <label class="label">收貨地址</label>
                     <p class="control has-icon has-icon-right">
-                    <input name="url" v-model="mobile_user_address" v-validate="'required|required'" :class="{'input': true, 'is-danger': errors.has('url') }" type="text" placeholder="例如: 北京市朝阳区大望路西西里小区4栋2单元201"/>
-                    <span v-show="errors.has('url')" class="help is-danger">收货地址不能为空</span>
+                    <input name="url" v-model="mobile_user_address" v-validate="'required|required'" :class="{'input': true, 'is-danger': errors.has('url') }" type="text" placeholder="例如: 北京市朝陽區大望路西西里小區4棟2單元201"/>
+                    <span v-show="errors.has('url')" class="help is-danger">收貨地址不能爲空</span>
                     </p>
                 </div>
 
                 <div class="column is-12">
-                    <label class="label">收货电话</label>
+                    <label class="label">收貨電話</label>
                     <p class="control has-icon has-icon-right">
                     <input name="phone" v-model="mobile_user_phone" v-validate="'required|numeric'" :class="{'input': true, 'is-danger': errors.has('phone') }" type="text" placeholder="例如: 18888888888"/>
-                    <span v-show="errors.has('phone')" class="help is-danger">电话号码不能为空</span>
+                    <span v-show="errors.has('phone')" class="help is-danger">電話號碼不能爲空</span>
                     </p>
                 </div>
             </form>
@@ -117,8 +117,8 @@ export default new Router({
         <section>
           <span class="divider" style="height: 15px;"></span>
           <div class="extra_cost" style=" ">
-            <span style="float: left; margin-left: 15px;"> 卖家留言:</span>
-            <input v-model="guest_remarks" id="extra_charge" type="text" name="cost" placeholder="选填: 对本次交易的说明" style="border: 0; background-color: white;
+            <span style="float: left; margin-left: 15px;"> 賣家留言:</span>
+            <input v-model="guest_remarks" id="extra_charge" type="text" name="cost" placeholder="選填: 對本次交易的說明" style="border: 0; background-color: white;
             font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
           </div>
         </section>
@@ -126,7 +126,7 @@ export default new Router({
         <section>
           <span class="divider"></span>
           <div class="extra_cost" style=" ">
-            <span style="float: left; margin-left: 15px;"> 应付金额:</span>
+            <span style="float: left; margin-left: 15px;"> 應付金額:</span>
             <div v-if="single_pay" class="rel_price" type="text" name="cost" style="border: 0; background-color: white;
             font-size: 20px; color: #ff621a; font-weight: bold; outline: none; text-align: right; padding-right: 20px;"> \{\{ total_cost | currency }}</div>
             <div v-else class="rel_price" type="text" name="cost" style="border: 0; background-color: white;
@@ -147,7 +147,7 @@ export default new Router({
           </div>
 
           <div style=" padding: 14px 10px;" @click="user_wechat">
-            <img src="../../assets/选中3x.png" style="width: 28px;"/>
+            <img src="../../assets/選中3x.png" style="width: 28px;"/>
           </div>
         </div>
       </div>
@@ -212,15 +212,15 @@ export default new Router({
         },
         methods:{
             validateBeforeSubmit() {
-               //拦截异步操作
+               //攔截異步操作
                return new Promise((resolve, reject) => {
                    this.$validator.validateAll().then(result => {
                        console.info(result)
                        if (result) {
-                           console.info("============表单验证成功===")
+                           console.info("============表單驗證成功===")
                            resolve(true);
                        } else {
-                           alert('请填写完整的收货信息!');
+                           alert('請填寫完整的收貨信息!');
                            resolve(false);
                        }
                     });
@@ -277,12 +277,12 @@ export default new Router({
                             console.error(error)
                         });
                     } else {
-                        console.info('== 请填写完整的收货信息')
+                        console.info('== 請填寫完整的收貨信息')
                     }
                 });
             },
             purchase (order_number) {
-              //调起微信支付界面
+              //調起微信支付界面
               if (typeof WeixinJSBridge == "undefined"){
                 if( document.addEventListener ){
                   document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady, false);
@@ -318,13 +318,13 @@ export default new Router({
                         "paySign":  response.data.paySign
                     },
                     function(res){
-                        // 下面代码仅用于调试
+                        // 下面代碼僅用於調試
                         // alert("res.err_msg: " + res.err_msg + ", err_desc: " + res.err_desc)
                         if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-                          // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                          // 使用以上方式判斷前端返回,微信團隊鄭重提示：res.err_msg將在用戶支付成功後返回    ok，但並不保證它絕對可靠。
                           that.$router.push({ path: '/shops/paysuccess?order_id=' + order_number });
                         } else {
-                          // 显示取消支付或者失败
+                          // 顯示取消支付或者失敗
                           that.$router.push({ path: '/shops/payfail?order_id=' + order_number });
                         }
                     }
@@ -338,7 +338,7 @@ export default new Router({
 </script>
 ```
 
-核心代码如下：
+核心代碼如下：
 
 ```
 onBridgeReady (order_number) {
@@ -365,12 +365,12 @@ onBridgeReady (order_number) {
 }
 ```
 
-上面的代码是用来给页面一准备好( WeixinJSBridge 准备好了)的时候，页面就要调用的。 
+上面的代碼是用來給頁面一準備好( WeixinJSBridge 準備好了)的時候，頁面就要調用的。 
 
 
 ```
 purchase (order_number) {
-  //调起微信支付界面
+  //調起微信支付界面
   if (typeof WeixinJSBridge == "undefined"){
     if( document.addEventListener ){
       document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady, false);
@@ -384,22 +384,22 @@ purchase (order_number) {
 },
 ```            
 
-上面的代码用于调用出 “微信支付页面”.  其中的变量 `WeixinJSBridge` 是微信浏览器自带的变量， 不必声名，直接拿过来用就行。
+上面的代碼用於調用出 “微信支付頁面”.  其中的變量 `WeixinJSBridge` 是微信瀏覽器自帶的變量， 不必聲名，直接拿過來用就行。
 
 ## 看效果
 
-微信的支付页面会跳出来 （图略）
+微信的支付頁面會跳出來 （圖略）
 
-## 总结
+## 總結
 
 可以看到：
 
-1. 微信支付的细节处理，都交给了后台服务器端。 只要我们H5端把参数准备好，直接访问  http://shopweb.siwei.me/api/payments/user_pay 就可以了。 
-2. 微信支付，分成单笔商品支付和多笔商品支付两种情况. 区别就是把参数重新组织一下即可。
-3. 新手对于 WeixinJSBridge 这个变量很难掌握， 一定要多看文档。 这个文档是 “微信公众号内支付”的文档， 不是微信APP ， 或者微信普通H5的文档。 一定要梳理好逻辑。 另外，对于后端API的同学这里更难，建议多查多试。 
-4. 在微信的后台，要配置不同的支付目录。 安卓和IOS 的粗略是不一样的。 建议大家百度一下。
-5. 微信的支付场景对应的支付方式和实现方式是不一样的。 本例是“微信的公众号内支付”。
+1. 微信支付的細節處理，都交給了後臺服務器端。 只要我們H5端把參數準備好，直接訪問  http://shopweb.siwei.me/api/payments/user_pay 就可以了。 
+2. 微信支付，分成單筆商品支付和多筆商品支付兩種情況. 區別就是把參數重新組織一下即可。
+3. 新手對於 WeixinJSBridge 這個變量很難掌握， 一定要多看文檔。 這個文檔是 “微信公衆號內支付”的文檔， 不是微信APP ， 或者微信普通H5的文檔。 一定要梳理好邏輯。 另外，對於後端API的同學這裏更難，建議多查多試。 
+4. 在微信的後臺，要配置不同的支付目錄。 安卓和IOS 的粗略是不一樣的。 建議大家百度一下。
+5. 微信的支付場景對應的支付方式和實現方式是不一樣的。 本例是“微信的公衆號內支付”。
 
-微信的官方文档中， 提供的例子都是基于经典的WEB页面（整体刷新的那种）的，目前还没有看到SPA的例子。 但是大家的问题很多。 我的个人博客也记录了一些内容： http://siwei.me/blog/posts/--27
+微信的官方文檔中， 提供的例子都是基於經典的WEB頁面（整體刷新的那種）的，目前還沒有看到SPA的例子。 但是大家的問題很多。 我的個人博客也記錄了一些內容： http://siwei.me/blog/posts/--27
 
-由于篇幅限制，微信相关的内容不再赘述。
+由於篇幅限制，微信相關的內容不再贅述。

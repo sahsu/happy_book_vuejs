@@ -1,20 +1,20 @@
 # 打包和部署
 
-平时我们开发时，是在本地做开发，每次打开的都是 http://localhost:8080/#/ 。 而真实的项目中，我们肯定要把项目部署到某个地方。
+平時我們開發時，是在本地做開發，每次打開的都是 http://localhost:8080/#/ 。 而真實的項目中，我們肯定要把項目部署到某個地方。
 
-所以我们需要对项目进行打包和编译。 
+所以我們需要對項目進行打包和編譯。 
 
-另外，在正式上线之前，也要在测试服务器上进行发布， 这样才能看到一些平时在 localhost上看不到的问题。
+另外，在正式上線之前，也要在測試服務器上進行發佈， 這樣才能看到一些平時在 localhost上看不到的問題。
 
 ## 打包
 
-直接使用下面命令,就可以把vue项目打包:
+直接使用下面命令,就可以把vue項目打包:
 
 ```
 $ npm run build
 ```
 
-这个命令运行过程如下:
+這個命令運行過程如下:
 
 ```
 siwei@siwei-linux:/workspace/test_vue_0613$ npm run build
@@ -49,10 +49,10 @@ static/css/app.32ddfe6eea5926f8e3c760d764fef3fa.css.map  623 bytes       0  [emi
 
 可以看到： 
 
-1. 整个过程耗时 18.658s
+1. 整個過程耗時 18.658s
 2. 使用的 webpack 版本是 2.6.1
-3. 对CSS文件进行了优化.  (优化的比率是 52.11%)
-4. 所有的 .vue 文件,都被打包编译成了下面的文件:
+3. 對CSS文件進行了優化.  (優化的比率是 52.11%)
+4. 所有的 .vue 文件,都被打包編譯成了下面的文件:
 
 ```
 $ find ./dist
@@ -73,18 +73,18 @@ $ find ./dist
 
 其中, 包括了 js, css , map 和 index.html
 
-我们需要把它放到 http 服务器上,例如: nginx , apache.
+我們需要把它放到 http 服務器上,例如: nginx , apache.
 
 ## 部署
 
-### 1. 上传代码到远程服务器
+### 1. 上傳代碼到遠程服務器
 
-我们使用 scp 或者 ftp方式,可以把代码上传到服务器, 假设我们的服务器是 linux,
+我們使用 scp 或者 ftp方式,可以把代碼上傳到服務器, 假設我們的服務器是 linux,
 
-- 路径是 :  /opt/app/test_vue
-- 服务器ip:  123.255.255.33
-- 服务器ssh端口: 6666  
-- 服务器用户名: root
+- 路徑是 :  /opt/app/test_vue
+- 服務器ip:  123.255.255.33
+- 服務器ssh端口: 6666  
+- 服務器用戶名: root
 
 
 ```
@@ -100,15 +100,15 @@ app.d8b9f437c302a7070fe7.js                     100% 9323     9.1KB/s   00:00
 vendor.33c767135f1684f458a7.js                  100%  119KB 118.7KB/s   00:00
 ```
 
-这样,就把本地的 `dist` 目录,上传到了远程的 /opt/app目录上.
+這樣,就把本地的 `dist` 目錄,上傳到了遠程的 /opt/app目錄上.
 
-### 2. 配置远程服务器
+### 2. 配置遠程服務器
 
-2.1 登陆远程服务器:
+2.1 登陸遠程服務器:
 
 ```
 $ ssh root@123.255.255.23 -p 6666
-(输入密码， 回车)
+(輸入密碼， 回車)
 
 Welcome to Ubuntu 14.04.4 LTS (GNU/Linux 3.13.0-86-generic x86_64)
 
@@ -116,15 +116,15 @@ root@my_server:~#
 
 ```
 
-2.2 把刚才上传的文件夹重命名成: `vue_demo`:
+2.2 把剛纔上傳的文件夾重命名成: `vue_demo`:
 
 ```
 # mv /opt/app/dist /opt/app/vue_demo
 ```
 
-2.3 配置nginx, 使 域名: `vue_demo.siwei.me` 指向该位置:
+2.3 配置nginx, 使 域名: `vue_demo.siwei.me` 指向該位置:
 
-把下面代码,加入到nginx的配置文件中(`/etc/nginx/nginx.conf`)
+把下面代碼,加入到nginx的配置文件中(`/etc/nginx/nginx.conf`)
 
 ```
   server {
@@ -137,7 +137,7 @@ root@my_server:~#
 
 ```
 
-重启nginx之前,测试一下刚才加入的代码是否有问题:
+重啓nginx之前,測試一下剛纔加入的代碼是否有問題:
 
 ```
 # nginx -t
@@ -145,9 +145,9 @@ nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
-可以看到,没问题.
+可以看到,沒問題.
 
-2.4 然后重启nginx :
+2.4 然後重啓nginx :
 
 ```
 # nginx -s stop
@@ -157,17 +157,17 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 ### 3. 修改域名配置
 
-nginx跑起来之后, 我们就要配置域名. 否则无法访问.
+nginx跑起來之後, 我們就要配置域名. 否則無法訪問.
 
-3.1 我们需要增加个二级域名:  vue_demo.siwei.me
+3.1 我們需要增加個二級域名:  vue_demo.siwei.me
 
-以dnspod为例, 需要设置这个二级域名的: A记录. IP地址:
+以dnspod爲例, 需要設置這個二級域名的: A記錄. IP地址:
 
-![增加二级域名vue_demo.siwei.me](./images/add_a_record.png)
+![增加二級域名vue_demo.siwei.me](./images/add_a_record.png)
 
 保存.
 
-3.2 回到命令行, 输入 ping 命令,确认:
+3.2 回到命令行, 輸入 ping 命令,確認:
 
 ```
 $ ping vue_demo.siwei.me
@@ -177,10 +177,10 @@ PING vue_demo.siwei.me (123.57.235.33) 56(84) bytes of data.
 64 bytes from 123.57.235.33: icmp_seq=3 ttl=54 time=9.25 ms
 ```
 
-说明 我的二级域名 `vue_demo.siwei.me` 已经可以正常指向到 我的服务器ip了.
+說明 我的二級域名 `vue_demo.siwei.me` 已經可以正常指向到 我的服務器ip了.
 
 ### 4. 部署完成!
 
-打开浏览器, 访问 http://vue_demo.siwei.me 就可以看到效果了，如下图所示:
+打開瀏覽器, 訪問 http://vue_demo.siwei.me 就可以看到效果了，如下圖所示:
 
 ![vuejs_vue_demo](./images/vuejs_vue_demo.siwei.me.png)

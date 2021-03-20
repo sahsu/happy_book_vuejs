@@ -1,14 +1,14 @@
-# 实体书的勘误表
+# 實體書的勘誤表
 
-非常抱歉，由于我的个人失误，草稿以markdown格式书写，在复制粘贴的时候，代码中的 `{{ }}` 没有复制到 word中。
+非常抱歉，由於我的個人失誤，草稿以markdown格式書寫，在複製粘貼的時候，代碼中的 `{{ }}` 沒有複製到 word中。
 
-不过在code_example文件夹中的中都很完整。读者可以直接运行那边的代码。
+不過在code_example文件夾中的中都很完整。讀者可以直接運行那邊的代碼。
 
-## 2.1 极速入门(实体书第10页)
+## 2.1 極速入門(實體書第10頁)
 
 `{{show_my_text}}`在例子中缺失
 
-错误的内容:
+錯誤的內容:
 
 ```
 <div id='app'>
@@ -16,73 +16,73 @@
 </div>
 ```
 
-正确的内容应该是:
+正確的內容應該是:
 ```
 <div id='app'>
   {{show_my_text}}
 </div>
 ```
 
-## 2.2.2 HTML代码的<head>部分(实体第19页)
+## 2.2.2 HTML代碼的<head>部分(實體第19頁)
 
-章节号标记错误
+章節號標記錯誤
 
-错误的原文:
+錯誤的原文:
 
 ```
-// 下面的window.onload函数暂时省略。 会在 2.2.3 js代码部分讲解到。
+// 下面的window.onload函數暫時省略。 會在 2.2.3 js代碼部分講解到。
 ...
-  <!-- 这里的代码暂时省略。会在 2.2.2 HTML代码的body部分中讲解到 -->
+  <!-- 這裏的代碼暫時省略。會在 2.2.2 HTML代碼的body部分中講解到 -->
 ```
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
-// 下面的window.onload函数暂时省略。 会在 2.2.4 js代码部分讲解到。
+// 下面的window.onload函數暫時省略。 會在 2.2.4 js代碼部分講解到。
 ...
-  <!-- 这里的代码暂时省略。会在 2.2.3 HTML代码的body部分中讲解到 -->
+  <!-- 這裏的代碼暫時省略。會在 2.2.3 HTML代碼的body部分中講解到 -->
 
 ```
 
 
-## 4.1.4 定义并显示变量 (实体书第54页 )
+## 4.1.4 定義並顯示變量 (實體書第54頁 )
 
-代码缺失
+代碼缺失
 
-错误的原文:
+錯誤的原文:
 
 ```
 <template>
   <div>
-  <!--  步骤2: 在这里显示 message -->
+  <!--  步驟2: 在這裏顯示 message -->
 
   </div>
 </template>
 ```
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
 <template>
   <div>
-  <!--  步骤2: 在这里显示 message -->
+  <!--  步驟2: 在這裏顯示 message -->
   {{message}}
   </div>
 </template>
 ```
 
 
-## 4.4.1 渲染某个变量(实体书64)
+## 4.4.1 渲染某個變量(實體書64)
 
-代码缺失
+代碼缺失
 
-错误的原文:
+錯誤的原文:
 
 ```
-可以这样来显示它:
+可以這樣來顯示它:
 <div></div>
 
-完整代码如下:
+完整代碼如下:
 <template>
   <div>
 
@@ -92,13 +92,13 @@
 ```
 
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
-可以这样来显示它:
+可以這樣來顯示它:
 <div>{{my_value}}</div>
 
-完整代码如下:
+完整代碼如下:
 <template>
   <div>
     {{message}}
@@ -106,11 +106,11 @@
 </template>
 ```
 
-## 4.5.6 v-on (实体书73页)
+## 4.5.6 v-on (實體書73頁)
 
-代码缺失.
+代碼缺失.
 
-错误的原文:
+錯誤的原文:
 
 ```
 <body>
@@ -119,7 +119,7 @@
     <br/>
 ```
 
-正确的内容应该是:
+正確的內容應該是:
 
 
 ```
@@ -129,28 +129,28 @@
     <br/>
 ```
 
-## 4.7.2 显示博客详情页 (实体书87页)
+## 4.7.2 顯示博客詳情頁 (實體書87頁)
 
-代码缺失
+代碼缺失
 
-错误的原文:
+錯誤的原文:
 
 ```
 <div>
-  <p> 标题: </p>
-  <p> 发布于: </p>
+  <p> 標題: </p>
+  <p> 發佈於: </p>
   <div>
 
   </div>
 </div>
 ```
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
 <div>
-  <p> 标题: {{blog.title}} </p>
-  <p> 发布于: {{blog.created_at}} </p>
+  <p> 標題: {{blog.title}} </p>
+  <p> 發佈於: {{blog.created_at}} </p>
   <div>
     {{blog.body}}
   </div>
@@ -158,11 +158,11 @@
 
 ```
 
-## 4.7.5 修改博客列表页的跳转方式2: 使用v-link (实体书91页)
+## 4.7.5 修改博客列表頁的跳轉方式2: 使用v-link (實體書91頁)
 
-代码缺失
+代碼缺失
 
-错误的原文:
+錯誤的原文:
 
 ```
 <td>
@@ -172,7 +172,7 @@
 </td>
 ```
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
 <td>
@@ -182,49 +182,49 @@
 </td>
 ```
 
-## 4.10 双向绑定(实体书96页)
+## 4.10 雙向綁定(實體書96頁)
 
 
-代码缺失
+代碼缺失
 
-错误的原文:
-
-```
-    <!-- 显示　this.my_value 这个变量 -->
-    <p>页面上的值:   </p>
-```
-
-
-正确的内容应该是:
-
+錯誤的原文:
 
 ```
-    <!-- 显示　this.my_value 这个变量 -->
-    <p>页面上的值: {{my_value}}  </p>
+    <!-- 顯示　this.my_value 這個變量 -->
+    <p>頁面上的值:   </p>
 ```
 
 
-## 4.11 表单项目的绑定(实体书99-100页)
+正確的內容應該是:
+
+
+```
+    <!-- 顯示　this.my_value 這個變量 -->
+    <p>頁面上的值: {{my_value}}  </p>
+```
+
+
+## 4.11 表單項目的綁定(實體書99-100頁)
 
 
 
-代码缺失
+代碼缺失
 
-错误的原文:
+錯誤的原文:
 ```
 <template>
   <div>
     input： <input type='text' v-model="input_value"/>,
-    输入的值：
+    輸入的值：
     <hr/>
     text area： <textarea v-model="textarea_value"></textarea>,
-    输入的值：
+    輸入的值：
     <hr/>
     radio:
     <input type='radio' v-model='radio_value' value='A'/> A,
     <input type='radio' v-model='radio_value' value='B'/> B,
     <input type='radio' v-model='radio_value' value='C'/> C,
-    输入的值：
+    輸入的值：
 
     <hr/>
     checkbox:
@@ -232,7 +232,7 @@
       v-bind:true-value='true'
       v-bind:false-value='false'
       /> ,
-    输入的值：
+    輸入的值：
 
     <hr/>
     select:
@@ -241,28 +241,28 @@
         {{e.text}}
       </option>
     </select>
-    输入的值：
+    輸入的值：
   </div>
 </template>
 ```
 
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
 <template>
   <div>
     input： <input type='text' v-model="input_value"/>,
-    输入的值：{{input_value}}
+    輸入的值：{{input_value}}
     <hr/>
     text area： <textarea v-model="textarea_value"></textarea>,
-    输入的值：{{textarea_value}}
+    輸入的值：{{textarea_value}}
     <hr/>
     radio:
     <input type='radio' v-model='radio_value' value='A'/> A,
     <input type='radio' v-model='radio_value' value='B'/> B,
     <input type='radio' v-model='radio_value' value='C'/> C,
-    输入的值：
+    輸入的值：
     {{radio_value}}
     <hr/>
     checkbox:
@@ -270,7 +270,7 @@
       v-bind:true-value='true'
       v-bind:false-value='false'
       /> ,
-    输入的值：
+    輸入的值：
     {{checkbox_value}}
     <hr/>
     select:
@@ -279,109 +279,109 @@
         {{e.text}}
       </option>
     </select>
-    输入的值：{{select_value}}
+    輸入的值：{{select_value}}
   </div>
 </template>
 ```
 
-## 6.3.1 典型例子 (实体书135页)
+## 6.3.1 典型例子 (實體書135頁)
 
 
 
-代码缺失
+代碼缺失
 
-错误的原文:
+錯誤的原文:
 
 ```
 <div id='app'>
     <p> 原始字符串： </p>
-    <p> 通过运算后得到的字符串： </p>
+    <p> 通過運算後得到的字符串： </p>
 </div>
 ```
 
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
 <div id='app'>
     <p> 原始字符串： {{my_text}} </p>
-    <p> 通过运算后得到的字符串：{{my_computed_text}} </p>
+    <p> 通過運算後得到的字符串：{{my_computed_text}} </p>
 </div>
 
 ```
 
-## 6.3.2 Computed Properties 与普通方法的区别(实体书137页)
+## 6.3.2 Computed Properties 與普通方法的區別(實體書137頁)
 
 
 
-代码缺失
+代碼缺失
 
-错误的原文:
+錯誤的原文:
 
 ```
     <div id='app'>
         <p> 原始字符串：  </p>
-        <p> 通过运算后得到的字符串： {{my_computed_text() }} </p>
+        <p> 通過運算後得到的字符串： {{my_computed_text() }} </p>
     </div>
 ```
 
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
     <div id='app'>
         <p> 原始字符串：{{my_text}} </p>
-        <p> 通过运算后得到的字符串： {{my_computed_text() }} </p>
+        <p> 通過運算後得到的字符串： {{my_computed_text() }} </p>
     </div>
 ```
 
-## 6.3.3 watched properties (实体书138,139页)
+## 6.3.3 watched properties (實體書138,139頁)
 
 
 
-代码缺失
+代碼缺失
 
-错误的原文:
-
-```
-(138页)
-<p> 我所在的详细一些的地址：  （每次其他两个发生变化，这里就会跟着变化) </p>
-(139页)
-<p> 我所在的详细一些的地址：  （这是使用computed 实现的版本) </p>
-```
-
-
-正确的内容应该是:
+錯誤的原文:
 
 ```
-(138页)
-<p> 我所在的详细一些的地址：{{full_address}}  （每次其他两个发生变化，这里就会跟着变化) </p>
-(139页)
-<p> 我所在的详细一些的地址：{{full_address}}  （这是使用computed 实现的版本) </p>
+(138頁)
+<p> 我所在的詳細一些的地址：  （每次其他兩個發生變化，這裏就會跟着變化) </p>
+(139頁)
+<p> 我所在的詳細一些的地址：  （這是使用computed 實現的版本) </p>
+```
+
+
+正確的內容應該是:
+
+```
+(138頁)
+<p> 我所在的詳細一些的地址：{{full_address}}  （每次其他兩個發生變化，這裏就會跟着變化) </p>
+(139頁)
+<p> 我所在的詳細一些的地址：{{full_address}}  （這是使用computed 實現的版本) </p>
 
 ```
 
-## 8.5 用户的注册和微信授权(实体书196页)
+## 8.5 用戶的註冊和微信授權(實體書196頁)
 
 
-错误的原文:
+錯誤的原文:
 
 ```
 if(this。user_info。open_id)
 ```
 
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
 if(this.user_info.open_id)
 ```
-## 8.9 商品列表页 (实体书218页)
+## 8.9 商品列表頁 (實體書218頁)
 
 
-代码缺失
+代碼缺失
 
-错误的原文:
+錯誤的原文:
 
 ```
 <div class="title">
@@ -390,19 +390,19 @@ if(this.user_info.open_id)
 ```
 
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
 <div class="title">
   {{name}}
 </div>
 ```
-## 8.10 商品详情页 (实体书220页)
+## 8.10 商品詳情頁 (實體書220頁)
 
 
-代码缺失
+代碼缺失
 
-错误的原文:
+錯誤的原文:
 
 ```
     <p class="p_name"></p>
@@ -415,13 +415,13 @@ if(this.user_info.open_id)
       text-decoration: line-through;
       font-size: 18px;
       margin-left: 14px;'>
-        原价: ￥
+        原價: ￥
       </span>
     </div>
 ```
 
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
     <p class="p_name">{{good.name}}</p>
@@ -434,19 +434,19 @@ if(this.user_info.open_id)
       text-decoration: line-through;
       font-size: 18px;
       margin-left: 14px;'>
-        原价: ￥{{good.original_price}}
+        原價: ￥{{good.original_price}}
       </span>
     </div>
 
 ```
 
 
-## 8.11 购物车(实体书228页)
+## 8.11 購物車(實體書228頁)
 
 
-代码缺失
+代碼缺失
 
-错误的原文:
+錯誤的原文:
 
 ```
 <div class="item_names">
@@ -462,7 +462,7 @@ if(this.user_info.open_id)
 ```
 
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
 <div class="item_names">
@@ -478,11 +478,11 @@ if(this.user_info.open_id)
 
 ```
 
-## 8.13 微信支付（实体书235页)
+## 8.13 微信支付（實體書235頁)
 
-代码缺失
+代碼缺失
 
-错误的原文:
+錯誤的原文:
 
 ```
 <div class="title">
@@ -499,7 +499,7 @@ if(this.user_info.open_id)
 ```
 
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
 <div class="title">
@@ -515,11 +515,11 @@ if(this.user_info.open_id)
 
 ```
 
-## 8.13 微信支付（实体书236页)
+## 8.13 微信支付（實體書236頁)
 
-代码缺失
+代碼缺失
 
-错误的原文:
+錯誤的原文:
 
 ```
 <div class="title">
@@ -535,7 +535,7 @@ if(this.user_info.open_id)
 ```
 
 
-正确的内容应该是:
+正確的內容應該是:
 
 ```
 <div class="title">
