@@ -1,8 +1,8 @@
-# 商品详情页
+# 商品詳情頁
 
-当用户在商品列表页中点击时，就会跳转到该页面。
+當用戶在商品列表頁中點擊時，就會跳轉到該頁面。
 
-步骤如下：
+步驟如下：
 
 ## 1. 新增路由
 
@@ -24,7 +24,7 @@ export default new Router({
 })
 ```    
 
-## 2. 新增vue页面
+## 2. 新增vue頁面
 
 向 src/views/shops/goods_details 中增加：
 
@@ -34,12 +34,12 @@ export default new Router({
     <div class="goods_detail" style="height: 100%;">
       <header class="top_bar">
         <a onclick="window.history.go(-1)" class="icon_back"></a>
-        <h3 class="cartname">商品详情</h3>
+        <h3 class="cartname">商品詳情</h3>
       </header>
       <div class="tast_list_bd" style="padding-top: 44px;">
         <main class="detail_box">
 
-        <!-- 轮播图 -->
+        <!-- 輪播圖 -->
         <div class="home_ban">
           <div class="m_banner clearfix" id="my_banner">
             <ul class="banner_box" >
@@ -65,12 +65,12 @@ export default new Router({
               text-decoration: line-through;
               font-size: 18px;
               margin-left: 14px;'>
-                原价: ￥{{good.original_price}}
+                原價: ￥{{good.original_price}}
               </span>
             </div>
             <!--
             <div class="product_right">
-              降价通知
+              降價通知
             </div>
             -->
           </div>
@@ -78,7 +78,7 @@ export default new Router({
 
         <span class="divider" style="height: 2px;"></span>
         <div id="choose_number" style= "height: 40px; background-color: #fff;">
-          <label style="font-size: 18px; float: left; margin-left: 10.5px; margin-top: 7.5px;">购买数量</label>
+          <label style="font-size: 18px; float: left; margin-left: 10.5px; margin-top: 7.5px;">購買數量</label>
           <div style= "padding-top: 5px;">
             <img src="../../assets/add@2x.png" style="margin-right: 10px; display: inline;float:right;width:30px;" class="plus" @click="plus"/>
             <input pattern="[0-9]*" v-model="buy_count" type="text" name="counts" style="width:30px;display: inline;float:right;border: 0.5px solid #e2e2e2;line-height:28px;text-align:center;"/>
@@ -99,13 +99,13 @@ export default new Router({
           <li class="m_item">
             <a @click="toCart" class="m_item_link">
               <em class="m_item_pic three"></em>
-              <span class="m_item_name">购物车</span>
+              <span class="m_item_name">購物車</span>
             </a>
           </li>
         </ul>
         <div class="btn_box clearfix" >
-          <a @click="addToCart" class="buy_now">加入购物车</a>
-          <a @click="zhifu" class="buybuy">立即购买</a>
+          <a @click="addToCart" class="buy_now">加入購物車</a>
+          <a @click="zhifu" class="buybuy">立即購買</a>
         </div>
       </div>
     </footer>
@@ -130,7 +130,7 @@ import {scrollPic} from '../../libs/index.js'
         watch:{
         },
         mounted(){
-          scrollPic();   //轮播图
+          scrollPic();   //輪播圖
 
           this.$http.get(this.$configs.api + 'goods/goods_details?good_id=' + this.good_id).then((response)=>{
             console.info(this.good_id)
@@ -144,7 +144,7 @@ import {scrollPic} from '../../libs/index.js'
         },
         methods:{
           addToCart () {
-            alert("商品已经加入到了购物车")
+            alert("商品已經加入到了購物車")
             let goods = {
               id: this.good_id,
               title: this.good.name,
@@ -177,21 +177,21 @@ import {scrollPic} from '../../libs/index.js'
 </script>
 ```
 
-在上面的代码中， 
+在上面的代碼中， 
 
-1. 实现了加入购物车的方法
-2. 实现了对于支付页面的跳转
-3. 实现了从远程接口读取数据
+1. 實現了加入購物車的方法
+2. 實現了對於支付頁面的跳轉
+3. 實現了從遠程接口讀取數據
 
 
-## 3. 添加物品到购物车
+## 3. 添加物品到購物車
 
-下面的代码是把某个商品添加到购物车中: 
+下面的代碼是把某個商品添加到購物車中: 
 
 ```
 addToCart () {
-    console.info('加入购物车')
-    alert("商品已经加入到了购物车")
+    console.info('加入購物車')
+    alert("商品已經加入到了購物車")
     let goods = {
         id: this.good_id,
         title: this.good.name,
@@ -203,7 +203,7 @@ addToCart () {
 },
 ```
 
-同时，在 src/vuex/actions.js中，添加如下代码: 
+同時，在 src/vuex/actions.js中，添加如下代碼: 
 
 ```
 export const addToCart = ({ commit }, product) => {
@@ -219,10 +219,10 @@ export const addToCart = ({ commit }, product) => {
 
 ## 看效果
 
-![详情页](/images/real_project/show_page.png)
+![詳情頁](/images/real_project/show_page.png)
 
-## 总结
+## 總結
 
-- 购物车使用了Vuex来保存数据。 下一节会详述。
-- 进入到支付页面，在后面会详述。 这个页面我们只加上一个链接就好了
-- 本页面使用了后台提供的接口，会返回必要的数据。 接口结构略。 
+- 購物車使用了Vuex來保存數據。 下一節會詳述。
+- 進入到支付頁面，在後面會詳述。 這個頁面我們只加上一個鏈接就好了
+- 本頁面使用了後臺提供的接口，會返回必要的數據。 接口結構略。 

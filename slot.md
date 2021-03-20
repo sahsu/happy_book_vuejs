@@ -1,10 +1,10 @@
 # Slot
 
-作为对Component的补充，Vuejs 增加了 Slot 这个功能. 
+作爲對Component的補充，Vuejs 增加了 Slot 這個功能. 
 
 ## 普通的Slot
 
-我们从具体的例子来说明。
+我們從具體的例子來說明。
 
 ```
 <html>
@@ -14,7 +14,7 @@
 <body>
 	<div id='app'>
 		<study-process>
-			我学习到了Slot 这个章节。
+			我學習到了Slot 這個章節。
 		</study-process>
 	</div>
 	<script>
@@ -36,7 +36,7 @@
 </html>
 ```
 
-从上面的代码从，我们可以看到，我们先是定义了一个 component: 
+從上面的代碼從，我們可以看到，我們先是定義了一個 component: 
 
 ```
 Vue.component('study-process', {
@@ -49,33 +49,33 @@ Vue.component('study-process', {
 })
 ```
 
-在这个component的template中，是这样的：  
+在這個component的template中，是這樣的：  
 
 ```
 template: '<div><slot></slot></div>'
 ```
 
-这里就使我们定义的 slot. 
+這裏就使我們定義的 slot. 
 
-然后，我们在调用这个 component的时候，这样： 
+然後，我們在調用這個 component的時候，這樣： 
 
 ```
 <study-process>
-	我学习到了Slot 这个章节。
+	我學習到了Slot 這個章節。
 </study-process>
 ```		
 
-所以，“我学习到了Slot 这个章节。”就好像一个参数那样传入到了 component中， component 发现自身已经定义了 slot, 就会把这个字符串放到slot的位置，然后显示出来。 
+所以，“我學習到了Slot 這個章節。”就好像一個參數那樣傳入到了 component中， component 發現自身已經定義了 slot, 就會把這個字符串放到slot的位置，然後顯示出來。 
 
-如下图所示： 
+如下圖所示： 
 
 ![slot](./images/slot.png)
 
 ## named slot
 
-也就是带有名字的slot . 
+也就是帶有名字的slot . 
 
-很多时候我们可能需要多个slot. 看下面的例子：
+很多時候我們可能需要多個slot. 看下面的例子：
 
 
 ```
@@ -87,13 +87,13 @@ template: '<div><slot></slot></div>'
 	<div id='app'>
 		<study-process>
 			<p slot='slot_top'>
-				Vuejs 比起别的框架真的简洁好多！
+				Vuejs 比起別的框架真的簡潔好多！
 			</p>
 
-				我学习到了  Slot 这个章节。
+				我學習到了  Slot 這個章節。
 
 			<h5 slot='slot_bottom'>
-				再也不怕H5 项目了~ 
+				再也不怕H5 項目了~ 
 			</h5>
 		</study-process>
 	</div>
@@ -115,7 +115,7 @@ template: '<div><slot></slot></div>'
 </html>
 ```
 
-上面的代码中， 我们定义了这样的 component: 
+上面的代碼中， 我們定義了這樣的 component: 
 
 ```
 Vue.component('study-process', {
@@ -127,22 +127,22 @@ Vue.component('study-process', {
 })
 ```
 
-其中的 `<slot name="slot_top"></slot>`  就是一个named slot (具备名字的slot) ,这样，在后面对于 component的调用中：
+其中的 `<slot name="slot_top"></slot>`  就是一個named slot (具備名字的slot) ,這樣，在後面對於 component的調用中：
 
 ```
 <p slot='slot_top'>
-	Vuejs 比起别的框架真的简洁好多！
+	Vuejs 比起別的框架真的簡潔好多！
 </p>
 ```	
-就会渲染在对应的位置了。		
+就會渲染在對應的位置了。		
 
-## slot 的默认值
+## slot 的默認值
 
-我们可以为 slot 加上默认值。这样当 “父页面” 没有指定某个slot的时候，就会显示这个默认值了。
+我們可以爲 slot 加上默認值。這樣當 “父頁面” 沒有指定某個slot的時候，就會顯示這個默認值了。
 
 例如：
 
 ```
-<slot name="slot_top">这里 top slot的默认值 </slot>
+<slot name="slot_top">這裏 top slot的默認值 </slot>
 ```
 

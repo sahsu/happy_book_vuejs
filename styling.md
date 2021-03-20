@@ -1,6 +1,6 @@
-# 使用样式
+# 使用樣式
 
-样式用起来特别简单.  直接写到 `<style>` 段落里面即可. 如下代码所示：
+樣式用起來特別簡單.  直接寫到 `<style>` 段落裏面即可. 如下代碼所示：
 
 ```
 <template>
@@ -25,9 +25,9 @@ export default {
 </style>
 ```	
 
-用浏览器打开上述代码，就可以看到 一个红色的，字体大小为20px 的 "Hi Vue!". 如下图所示：
+用瀏覽器打開上述代碼，就可以看到 一個紅色的，字體大小爲20px 的 "Hi Vue!". 如下圖所示：
 
-![带有style的demo](./images/vue_style.png)
+![帶有style的demo](./images/vue_style.png)
 
 ## 使用全局
 
@@ -48,11 +48,11 @@ td {
 }
 </style>
 ```
-这段CSS只对当前的 component 适用. 
+這段CSS只對當前的 component 適用. 
 
-也就是说，当我们有两个不同的页面： page1, page2, 如果两个页面中都定义了某个样式（例如上面的 `td`）的话，是不会互相冲突的。 
+也就是說，當我們有兩個不同的頁面： page1, page2, 如果兩個頁面中都定義了某個樣式（例如上面的 `td`）的話，是不會互相沖突的。 
 
-因为Vuejs 会这样解析： 
+因爲Vuejs 會這樣解析： 
 
 ```
 page1 的DOM： 
@@ -62,5 +62,5 @@ page2 的DOM:
 <div data-v-3389dfw ... ></div>
 ```
 
-而我们使用的 "scoped style" ，就可以存在于不同的页面（component)上了！
+而我們使用的 "scoped style" ，就可以存在於不同的頁面（component)上了！
 

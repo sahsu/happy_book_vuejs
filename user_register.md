@@ -1,22 +1,22 @@
-# 用户的注册和微信授权
+# 用戶的註冊和微信授權
 
-为了追求快速上线，项目组决定，去掉传统项目中的“用户注册”， “用户登录”， 直接使用微信的账户来核对。
+爲了追求快速上線，項目組決定，去掉傳統項目中的“用戶註冊”， “用戶登錄”， 直接使用微信的賬戶來覈對。
 
-1. 用户的微信浏览器带着当前微信用户的open_id，跳转到“后台服务器”。 
-2. “后台服务器” 给“微信服务器” 发送请求。 获得当前微信用户的信息
-3. “后台服务器” 为该用户生成一个用户文件
-4. “后台服务器” 告知“H5端” 已经成功注册该用户。 
-5. “H5端” 为该用户展示对应的页面。
+1. 用戶的微信瀏覽器帶着當前微信用戶的open_id，跳轉到“後臺服務器”。 
+2. “後臺服務器” 給“微信服務器” 發送請求。 獲得當前微信用戶的信息
+3. “後臺服務器” 爲該用戶生成一個用戶文件
+4. “後臺服務器” 告知“H5端” 已經成功註冊該用戶。 
+5. “H5端” 爲該用戶展示對應的頁面。
 
-如下图所示:
+如下圖所示:
 
-![用户注册过程](/images/real_project/user_register.png)
+![用戶註冊過程](/images/real_project/user_register.png)
 
-可以看出， 主要代码都是在 服务器端。 
+可以看出， 主要代碼都是在 服務器端。 
 
-## 1. 让微信用户打开首页后，直接跳转到后台服务器
+## 1. 讓微信用戶打開首頁後，直接跳轉到後臺服務器
 
-1.1 修改对应的路由文件(src/router/index.js): 
+1.1 修改對應的路由文件(src/router/index.js): 
 
 ```
 Vue.use(Router)
@@ -32,12 +32,12 @@ export default new Router({
 })
 ```
 
-1.2 增加对应的vue(src/views/wait_to_shouquan.vue) :
+1.2 增加對應的vue(src/views/wait_to_shouquan.vue) :
 
 ```
 <template>
   <div style="padding: 50px;">
-  <h3>正在跳转到授权界面...</h3>
+  <h3>正在跳轉到授權界面...</h3>
   </div>
 </template>
 
@@ -52,7 +52,7 @@ export default new Router({
 </script>
 ```
 
-可以看到， 上面的代码中， 使用到了 Vuex 来保存系统变量（后台服务器的地址） . 
+可以看到， 上面的代碼中， 使用到了 Vuex 來保存系統變量（後臺服務器的地址） . 
 
 1.3 增加核心模板文件(src/main.vue) ：
 
@@ -78,7 +78,7 @@ export default {
   },
   mounted () {
 
-    // TODO 开发环境下使用，　生产环境下注释掉
+    // TODO 開發環境下使用，　生產環境下注釋掉
     // store.dispatch(SET_BASEINFO, {open_id: 'opFELv6YkJkMaH-xFkokTWCs5AlQ'})
 
     if (this.user_info.open_id) {
@@ -86,10 +86,10 @@ export default {
     } else {
       store.dispatch(SET_BASEINFO)
       if (store.state.userInfo.open_id === undefined) {
-        console.info('用户id和open_id不存在,  跳转到授权等待页面')
+        console.info('用戶id和open_id不存在,  跳轉到授權等待頁面')
         this.$router.push({name: 'wait_to_shouquan'})
       } else {
-        console.info('已经有了BASEINFO')
+        console.info('已經有了BASEINFO')
       }
     }
   },
@@ -103,11 +103,11 @@ export default {
   }
 }
 </script>
-<!-- 下方的 CSS 略过 -->
+<!-- 下方的 CSS 略過 -->
 ```
 
-可以看到， 上面代码的 `mounted()` 方法中, 会对 当前用户的open_id 进行判断. 如果存在，调到首页。 如果不存在，表示该用户是新用户。 需要跳转到授权等待页面。 
-对应的代码如下所示： 
+可以看到， 上面代碼的 `mounted()` 方法中, 會對 當前用戶的open_id 進行判斷. 如果存在，調到首頁。 如果不存在，表示該用戶是新用戶。 需要跳轉到授權等待頁面。 
+對應的代碼如下所示： 
 
 ```
     if (this.user_info.open_id) {
@@ -115,22 +115,22 @@ export default {
     } else {
       store.dispatch(SET_BASEINFO)
       if (store.state.userInfo.open_id === undefined) {
-        console.info('用户id和open_id不存在,  跳转到授权等待页面')
+        console.info('用戶id和open_id不存在,  跳轉到授權等待頁面')
         this.$router.push({name: 'wait_to_shouquan'})
       } else {
-        console.info('已经有了BASEINFO')
+        console.info('已經有了BASEINFO')
       }
     }
 ```
 
-1.4 增加对应的Vuex代码
+1.4 增加對應的Vuex代碼
 
-目前来看， Vuex需要保存2个信息：
+目前來看， Vuex需要保存2個信息：
 
-- 用户的open id 
-- 远程服务器的地址，端口等常量. 
+- 用戶的open id 
+- 遠程服務器的地址，端口等常量. 
 
-1.4.1 增加 `src/vuex/store.js` . 这个是最最核心的文件。 完整如下所示：
+1.4.1 增加 `src/vuex/store.js` . 這個是最最核心的文件。 完整如下所示：
 
 ```
 import Vue from 'vue'
@@ -171,25 +171,25 @@ export default new Vuex.Store({
 
 ```
 
-上面的代码中， 部分代码是在后面会陆续用到的。 我们不用过多考虑。 只需要关注下面几行： 
+上面的代碼中， 部分代碼是在後面會陸續用到的。 我們不用過多考慮。 只需要關注下面幾行： 
 
 ```
 export default new Vuex.Store({
-  // 这里定义了若干系统常量
+  // 這裏定義了若干系統常量
   state: {
     web_share: 'http://shopweb.siwei.me',
     h5_share: 'http://shoph5.siwei.me/?#'
   },
 
   modules: {
-  	// 这里定义了 当前用户的各种信息， 我们把它封装成为一个js对象
+  	// 這裏定義了 當前用戶的各種信息， 我們把它封裝成爲一個js對象
     userInfo,
   },
 
 })
 ```
 
-1.4.2 增加`vuex/modules/user_info.js` 这个文件：
+1.4.2 增加`vuex/modules/user_info.js` 這個文件：
 
 ```
 import {
@@ -205,13 +205,13 @@ import {
 } from '../mutation_types'
 
 const state = {
-  id: undefined, //用户id
-  open_id: undefined, // 用户open_id
+  id: undefined, //用戶id
+  open_id: undefined, // 用戶open_id
   role: undefined
 }
 
 const mutations = {
-  //设置用户个人信息
+  //設置用戶個人信息
   [SET_BASEINFO] (state, data) {
     try {
       state.id = data.id
@@ -221,23 +221,23 @@ const mutations = {
       console.log(err)
     }
   },
-  //注销用户操作
+  //註銷用戶操作
   [CLEAR_BASEINFO] (state) {
-    console.info('清理缓存')
+    console.info('清理緩存')
     window.localStorage.clear()
   },
 }
 
 const getters = {
   [GET_BASEINFO]: state => {
-    console.info('进入到了getter中了')
+    console.info('進入到了getter中了')
     let localStorage = window.localStorage
     let user_info
     if (localStorage.getItem('SLLG_BASEINFO')) {
-      console.info('有数据')
+      console.info('有數據')
       user_info = JSON.parse(localStorage.getItem('SLLG_BASEINFO'))
     } else {
-      console.info('没有数据')
+      console.info('沒有數據')
     }
     return user_info
   },
@@ -277,7 +277,7 @@ export default {
 }
 ```
 
-该文件定义了用户的信息的各种属性。 
+該文件定義了用戶的信息的各種屬性。 
 
 1.4.3 增加 `src/vuex/mutation_types.js` 
 
@@ -286,7 +286,7 @@ export const SET_BASEINFO = 'SET_BASEINFO'
 export const GET_BASEINFO = 'GET_BASEINFO'
 ```
 
-上面内容定义了该对象的两个操作。 
+上面內容定義了該對象的兩個操作。 
 
 1.4.4 增加 `src/vuex/modules/actions.js`
 
@@ -294,49 +294,49 @@ export const GET_BASEINFO = 'GET_BASEINFO'
 import * as types from './mutation_types'
 ```
 
-可以看到上面的内容对于 mutation_types 进行了引用。
+可以看到上面的內容對於 mutation_types 進行了引用。
 
 1.4.5 增加 `src/vuex/modules/getters.js`
 
 ```
-// 先放成空内容好了
+// 先放成空內容好了
 ```
 
-这个文件先这样存在，目前阶段不需要有任何内容。
+這個文件先這樣存在，目前階段不需要有任何內容。
 
-## 1.5 与后台的对接
+## 1.5 與後臺的對接
 
-后台的同学， 为我们提供了一个链接入口：
+後臺的同學， 爲我們提供了一個鏈接入口：
 
 http://shopweb.siwei.me/auth/wechat
 
-我们让H5页面直接跳转过去就可以。 这里不需要加任何参数， 直接由后端的同学搞定接下来的事情。
+我們讓H5頁面直接跳轉過去就可以。 這裏不需要加任何參數， 直接由後端的同學搞定接下來的事情。
 
 ## 查看效果
 
-在微信开发者工具中，打开我们的H5 页面， 就会看到页面会自动跳转. 
+在微信開發者工具中，打開我們的H5 頁面， 就會看到頁面會自動跳轉. 
 
-观察仔细的同学可以看到有两次跳转：
+觀察仔細的同學可以看到有兩次跳轉：
 
-- 第一次跳转到 http://shopweb.siwei.me/auth/wechat
-- 第二次跳转到 https://open.weixin.qq.com/connect/oauth2/authorize
+- 第一次跳轉到 http://shopweb.siwei.me/auth/wechat
+- 第二次跳轉到 https://open.weixin.qq.com/connect/oauth2/authorize
 
-如下图所示：
+如下圖所示：
 
-![微信授权页面](/images/real_project/wechat_shou_quan.png)
+![微信授權頁面](/images/real_project/wechat_shou_quan.png)
 
-点击“确认登录”按钮，进行授权后，就会进入到H5的首页
+點擊“確認登錄”按鈕，進行授權後，就會進入到H5的首頁
 
-## 总结
+## 總結
 
-本节中，为了做一件事： 让用户跳转到微信授权，并注册， 我们做了如下的程序层面的内容： 
+本節中，爲了做一件事： 讓用戶跳轉到微信授權，並註冊， 我們做了如下的程序層面的內容： 
 
-- 使用Vuex 记录系统常量(远程服务器的地址)
-- 使用Vuex 记录用户的信息（新增了一个对象：user_info)
-- 使用了一个独立的页面（等待微信授权页面） 
-- 每次打开首页之前，都要判断该用户是否登录。
-- (后台任务) 让该用户在微信端授权， 并且在本地生成一个新的用户， 然后把相关数据返回给前端
+- 使用Vuex 記錄系統常量(遠程服務器的地址)
+- 使用Vuex 記錄用戶的信息（新增了一個對象：user_info)
+- 使用了一個獨立的頁面（等待微信授權頁面） 
+- 每次打開首頁之前，都要判斷該用戶是否登錄。
+- (後臺任務) 讓該用戶在微信端授權， 並且在本地生成一個新的用戶， 然後把相關數據返回給前端
 
-Vuex 是Vuejs 最复杂最不好理解的地方。 同学们不要怕。 之所以这么麻烦， 可以认为是javascript的语言特性决定的。 就好像java, C语言中大量用到的设计模式， 在现代编程语言(Ruby , Python, Perl)中就用不到， 可以有更加简单的办法， 例如Mixin)
+Vuex 是Vuejs 最複雜最不好理解的地方。 同學們不要怕。 之所以這麼麻煩， 可以認爲是javascript的語言特性決定的。 就好像java, C語言中大量用到的設計模式， 在現代編程語言(Ruby , Python, Perl)中就用不到， 可以有更加簡單的辦法， 例如Mixin)
 
-另外，本节对于后端的同学是个挑战， 不但要在微信端做修改，还需要对微信返回的数据结构很熟悉。 由于本书内容所限，不再赘述。 
+另外，本節對於後端的同學是個挑戰， 不但要在微信端做修改，還需要對微信返回的數據結構很熟悉。 由於本書內容所限，不再贅述。 

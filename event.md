@@ -1,44 +1,44 @@
-# Event Handler 事件处理
+# Event Handler 事件處理
 
-Vuejs中的事件处理非常强大， 也非常重要。 我们一定要学好它。
+Vuejs中的事件處理非常強大， 也非常重要。 我們一定要學好它。
 
-Event Handler 之所以会被Vuejs放到很高的地位，是基于这样的考虑： 
+Event Handler 之所以會被Vuejs放到很高的地位，是基於這樣的考慮： 
 
-1. 把跟事件相关的代码独立的写出来， 非常容易定位各种逻辑， 维护起来方便。 
-2. event handler 被独立出来之后， 页面的DOM元素看起来就会很简单。  容易理解。
-3. 当一个页面被关掉时，对应的ViewModel也会被回收。那么该页面定义的各种 event handler 也会被一并垃圾回收。 不会造成内存溢出。
+1. 把跟事件相關的代碼獨立的寫出來， 非常容易定位各種邏輯， 維護起來方便。 
+2. event handler 被獨立出來之後， 頁面的DOM元素看起來就會很簡單。  容易理解。
+3. 當一個頁面被關掉時，對應的ViewModel也會被回收。那麼該頁面定義的各種 event handler 也會被一併垃圾回收。 不會造成內存溢出。
 
 ## 支持的Event 
 
-我们在前面曾经看到过 `v-on:click`, 那么，都有哪些事件可以被`v-on`所支持呢？ 
+我們在前面曾經看到過 `v-on:click`, 那麼，都有哪些事件可以被`v-on`所支持呢？ 
 
-只要是标准的HTML定义的Event, 都是被Vuejs支持的。 
+只要是標準的HTML定義的Event, 都是被Vuejs支持的。 
 
-- focus  （元素获得焦点)
-- blur    (元素失去焦点)
-- click  （单击 鼠标左键）
-- dblclick (双击鼠标左键)
-- contextmenu (单机鼠标右键)
-- mouseover  (指针移到有事件监听的元素或者它的子元素内)
-- mouseout   (指针移出元素，或者移到它的子元素上)
-- keydown   （键盘动作： 按下任意键) 
-- keyup     (键盘动作： 释放任意键)
+- focus  （元素獲得焦點)
+- blur    (元素失去焦點)
+- click  （單擊 鼠標左鍵）
+- dblclick (雙擊鼠標左鍵)
+- contextmenu (單機鼠標右鍵)
+- mouseover  (指針移到有事件監聽的元素或者它的子元素內)
+- mouseout   (指針移出元素，或者移到它的子元素上)
+- keydown   （鍵盤動作： 按下任意鍵) 
+- keyup     (鍵盤動作： 釋放任意鍵)
 
-可以来这里查看 [所有HTML标准事件](https://developer.mozilla.org/zh-CN/docs/Web/Events)
+可以來這裏查看 [所有HTML標準事件](https://developer.mozilla.org/zh-CN/docs/Web/Events)
 
-总共定义了 162个标准事件， 和 几十个非标准事件，以及 Mozilla的特定事件。  如下图所示：
+總共定義了 162個標準事件， 和 幾十個非標準事件，以及 Mozilla的特定事件。  如下圖所示：
 
-![mozilla定义的事件截图](./images/events_defined_table.png)
+![mozilla定義的事件截圖](./images/events_defined_table.png)
 
-我们不用全部都记住，通常在日常开发中，只有不到20个是最常见的event. 
+我們不用全部都記住，通常在日常開發中，只有不到20個是最常見的event. 
 
-## 使用 v-on 进行事件的绑定
+## 使用 v-on 進行事件的綁定
 
-我们可以认为，几乎所有的事件，都是由 `v-on` 这个 directive 来驱动的。 所以，本节会对 `v-on` 有更加详尽的说明。
+我們可以認爲，幾乎所有的事件，都是由 `v-on` 這個 directive 來驅動的。 所以，本節會對 `v-on` 有更加詳盡的說明。
 
-### 1. 在 v-on 中使用变量
+### 1. 在 v-on 中使用變量
 
-如下面代码所示，可以在 `v-on` 中引用变量： 
+如下面代碼所示，可以在 `v-on` 中引用變量： 
 
 ```
 <html>
@@ -47,7 +47,7 @@ Event Handler 之所以会被Vuejs放到很高的地位，是基于这样的考�
 </head>
 <body>
 	<div id='app'>
-		您点击了： {% raw %}{{{% endraw %} count }} 次
+		您點擊了： {% raw %}{{{% endraw %} count }} 次
 		<br/>
 		<button v-on:click='count += 1' style='margin-top: 50px'> + 1</button>
 	</div>
@@ -64,13 +64,13 @@ Event Handler 之所以会被Vuejs放到很高的地位，是基于这样的考�
 </html>
 ```
 
-上面的代码，用浏览器打开后， 点击 按钮， 就可以看到 `count` 这个变量会随之 +1. 如下图所示： 
+上面的代碼，用瀏覽器打開後， 點擊 按鈕， 就可以看到 `count` 這個變量會隨之 +1. 如下圖所示： 
 
-![event: 使用变量](./images/events_use_variable.png)
+![event: 使用變量](./images/events_use_variable.png)
 
 ### 2. 在 v-on 中使用方法名
 
-上面的例子，也可以按照下面的写法来实现：
+上面的例子，也可以按照下面的寫法來實現：
 
 ```
 <html>
@@ -79,7 +79,7 @@ Event Handler 之所以会被Vuejs放到很高的地位，是基于这样的考�
 </head>
 <body>
 	<div id='app'>
-		您点击了：{% raw %}{{{% endraw %} count }} 次
+		您點擊了：{% raw %}{{{% endraw %} count }} 次
 		<br/>
 		<button v-on:click='increase_count' style='margin-top: 50px'>  + 1 </button>
 	</div>
@@ -101,11 +101,11 @@ Event Handler 之所以会被Vuejs放到很高的地位，是基于这样的考�
 </html>
 ```
 
-可以看到，在 `v-on:click='increase_count'` 中， `increase_count` 就是一个方法名。 
+可以看到，在 `v-on:click='increase_count'` 中， `increase_count` 就是一個方法名。 
 
-### 3. 在v-on 中使用方法名 + 参数
+### 3. 在v-on 中使用方法名 + 參數
 
-我们也可以直接使用 `v-on:click='some_function("your_parameter")'` 这样的写法，如 下面的例子所示： 
+我們也可以直接使用 `v-on:click='some_function("your_parameter")'` 這樣的寫法，如 下面的例子所示： 
 
 
 ```
@@ -117,14 +117,14 @@ Event Handler 之所以会被Vuejs放到很高的地位，是基于这样的考�
 	<div id='app'>
 		{% raw %}{{{% endraw %} message }}
 		<br/>
-		<button v-on:click='say_hi("明日的Vuejs大神")' style='margin-top: 50px'> 跟我打个招呼~ </button>
+		<button v-on:click='say_hi("明日的Vuejs大神")' style='margin-top: 50px'> 跟我打個招呼~ </button>
 	</div>
 
 	<script>
 		var app = new Vue({
 			el: '#app', 
 			data: {
-				message: "这是个 在click中调用 方法 + 参数的例子"
+				message: "這是個 在click中調用 方法 + 參數的例子"
 			},
 			methods: {
 				say_hi: function(name){
@@ -137,20 +137,20 @@ Event Handler 之所以会被Vuejs放到很高的地位，是基于这样的考�
 </html>
 ```
 
-使用浏览器打开后，点击按钮，就可以看到下图所示：
+使用瀏覽器打開後，點擊按鈕，就可以看到下圖所示：
 
-![使用方法+参数的例子](./images/event_call_method_with_parameter.png)
+![使用方法+參數的例子](./images/event_call_method_with_parameter.png)
 
-### 4. 重新设计按钮的逻辑
+### 4. 重新設計按鈕的邏輯
 
-我们在实际开发中，往往会遇到这样的情况： 点击某个按钮，或者触发某个事件后，希望概念 按钮的默认状态。
+我們在實際開發中，往往會遇到這樣的情況： 點擊某個按鈕，或者觸發某個事件後，希望概念 按鈕的默認狀態。
 
-最典型的例子： 提交表单(<form/>)的时候，我们希望先对该表单进行验证。 如果验证不通过，该表单就不要提交。 
+最典型的例子： 提交表單(<form/>)的時候，我們希望先對該表單進行驗證。 如果驗證不通過，該表單就不要提交。 
 
-这个时候，如果希望表单不要提交，我们就要让 这个 submit 按钮，不要有下一步的动作。 在所有的开发语言当中，都会有一个对应的方法，叫做： "preventDefault"
-(停止默认动作)
+這個時候，如果希望表單不要提交，我們就要讓 這個 submit 按鈕，不要有下一步的動作。 在所有的開發語言當中，都會有一個對應的方法，叫做： "preventDefault"
+(停止默認動作)
 
-我们看这个例子：
+我們看這個例子：
 
 
 ```
@@ -161,13 +161,13 @@ Event Handler 之所以会被Vuejs放到很高的地位，是基于这样的考�
 <body>
 	<div id='app'>
 
-		请输入您想打开的网址,   	<br/>
-		判断规则是： 				<br/>
-		1. 务必以 "http://"开头 	<br/>
+		請輸入您想打開的網址,   	<br/>
+		判斷規則是： 				<br/>
+		1. 務必以 "http://"開頭 	<br/>
 		2. 不能是空字符串			<br/>
-		<input v-model="url" placeholder="请输入 http:// 开头的字符串, 否则不会跳转" /> <br/>
+		<input v-model="url" placeholder="請輸入 http:// 開頭的字符串, 否則不會跳轉" /> <br/>
 		<br/>
-		<a v-bind:href="this.url" v-on:click='validate($event)'> 点我确定 </a>
+		<a v-bind:href="this.url" v-on:click='validate($event)'> 點我確定 </a>
 	</div>
 
 	<script>
@@ -179,7 +179,7 @@ Event Handler 之所以会被Vuejs放到很高的地位，是基于这样的考�
 			methods: {
 				validate: function(event){
 					if(this.url.length == 0 || this.url.indexOf('http://') != 0){
-						alert("您输入的网址不符合规则。 无法跳转")
+						alert("您輸入的網址不符合規則。 無法跳轉")
 						if(event){
 							alert("event is: " + event)
 							event.preventDefault()
@@ -193,39 +193,39 @@ Event Handler 之所以会被Vuejs放到很高的地位，是基于这样的考�
 </html>
 ```
 
-上面的代码中，可以看到，我们定义了一个变量： `url`.  并且通过代码： 
+上面的代碼中，可以看到，我們定義了一個變量： `url`.  並且通過代碼： 
 
-`<a v-bind:href="this.url" v-on:click='validate($event)'> 点我确定 </a>` 做了两件事情： 
+`<a v-bind:href="this.url" v-on:click='validate($event)'> 點我確定 </a>` 做了兩件事情： 
 
-1. 把 `url` 绑定到了该元素上。
-2. 该元素 在触发 `click`事件时，会调用 `validate`方法。 该方法传递了一个特殊的参数： `$event`. 该参数是当前 事件的一个实例。（MouseEvent)
+1. 把 `url` 綁定到了該元素上。
+2. 該元素 在觸發 `click`事件時，會調用 `validate`方法。 該方法傳遞了一個特殊的參數： `$event`. 該參數是當前 事件的一個實例。（MouseEvent)
 
-在 `validate`方法中，我们是这样定义的：  先验证是否符合规则。 如果符合，放行，会继续触发 `<a/>` 元素的默认动作（让浏览器发生跳转） 。 否则的
-话，会弹出一个 "alert" 提示框。 
+在 `validate`方法中，我們是這樣定義的：  先驗證是否符合規則。 如果符合，放行，會繼續觸發 `<a/>` 元素的默認動作（讓瀏覽器發生跳轉） 。 否則的
+話，會彈出一個 "alert" 提示框。 
 
 
-用浏览器打开这段代码，可以看到下图所示：
+用瀏覽器打開這段代碼，可以看到下圖所示：
 
 ![preventdefault 的例子](./images/event_preventdefault.png)
 
-我们先输入一个合法的地址： http://baidu.com  ， 可以看到，点击后，页面发生了跳转。 跳转到了百度。 
+我們先輸入一個合法的地址： http://baidu.com  ， 可以看到，點擊後，頁面發生了跳轉。 跳轉到了百度。 
 
-我们再输入一个 “不合法”的地址：  https://baidu.com  注意： 该地址不是以 "http://" 开头，所以我们的vuejs 代码不会让它放行。 
+我們再輸入一個 “不合法”的地址：  https://baidu.com  注意： 該地址不是以 "http://" 開頭，所以我們的vuejs 代碼不會讓它放行。 
 
-如下图所示：
+如下圖所示：
 
 ![prevent-default例子2，不放行](./images/event_prevent_default2.png)
 
-进一步观察，页面也不会跳转（很好的解释了 这个时候 `<a/>` 标签点了也不起作用)
+進一步觀察，頁面也不會跳轉（很好的解釋了 這個時候 `<a/>` 標籤點了也不起作用)
 
-### 5. Event Modifiers  事件修饰语
+### 5. Event Modifiers  事件修飾語
 
-我们很多时候，希望把代码写的优雅一些。 使用传统的方式，可能会把代码写的很臃肿。  如果某个元素在不同的event下有不同的表现，那么代码看起来就会有
-很多个 `if ...else ...` 这样的分支。 
+我們很多時候，希望把代碼寫的優雅一些。 使用傳統的方式，可能會把代碼寫的很臃腫。  如果某個元素在不同的event下有不同的表現，那麼代碼看起來就會有
+很多個 `if ...else ...` 這樣的分支。 
 
 所以， Vuejs 提供了 "Event Modifiers"。
 
-例如，我们可以把上面的例子略加修改：
+例如，我們可以把上面的例子略加修改：
 
 ```
 <html>
@@ -235,13 +235,13 @@ Event Handler 之所以会被Vuejs放到很高的地位，是基于这样的考�
 <body>
 	<div id='app'>
 
-		请输入您想打开的网址,   	<br/>
-		判断规则是： 				<br/>
-		1. 务必以 "http://"开头 	<br/>
+		請輸入您想打開的網址,   	<br/>
+		判斷規則是： 				<br/>
+		1. 務必以 "http://"開頭 	<br/>
 		2. 不能是空字符串			<br/>
-		<input v-model="url" placeholder="请输入 http:// 开头的字符串, 否则不会跳转" /> <br/>
+		<input v-model="url" placeholder="請輸入 http:// 開頭的字符串, 否則不會跳轉" /> <br/>
 		<br/>
-		<a v-bind:href="this.url" v-on:click='validate($event)' v-on:click.prevent='show_message'> 点我确定 </a>
+		<a v-bind:href="this.url" v-on:click='validate($event)' v-on:click.prevent='show_message'> 點我確定 </a>
 	</div>
 
 	<script>
@@ -259,7 +259,7 @@ Event Handler 之所以会被Vuejs放到很高的地位，是基于这样的考�
 					}
 				},
 				show_message: function(){
-					alert("您输入的网址不符合规则。 无法跳转")
+					alert("您輸入的網址不符合規則。 無法跳轉")
 				}
 			}
 		})
@@ -268,10 +268,10 @@ Event Handler 之所以会被Vuejs放到很高的地位，是基于这样的考�
 </html>
 ```
 
-可以看出，上面的代码的核心是：
+可以看出，上面的代碼的核心是：
 
 ```
-<a v-bind:href="this.url" v-on:click='validate($event)' v-on:click.prevent='show_message'> 点我确定 </a>
+<a v-bind:href="this.url" v-on:click='validate($event)' v-on:click.prevent='show_message'> 點我確定 </a>
 
 methods: {
 	validate: function(event){
@@ -282,32 +282,32 @@ methods: {
 		}
 	},
 	show_message: function(){
-		alert("您输入的网址不符合规则。 无法跳转")
+		alert("您輸入的網址不符合規則。 無法跳轉")
 	}
 }
 ```
 
-先是在 `<a/>` 中定义了两个 click 事件，一个是 `click`, 一个是 `click.prevent`.  后者表示，如果该元素的click 事件被 阻止了的话， 应该触发什么动作。 
+先是在 `<a/>` 中定義了兩個 click 事件，一個是 `click`, 一個是 `click.prevent`.  後者表示，如果該元素的click 事件被 阻止了的話， 應該觸發什麼動作。 
 
-然后，在 `methods` 代码段中，专门定义了 `show_message` , 用来给 `click.prevent` 所使用。
+然後，在 `methods` 代碼段中，專門定義了 `show_message` , 用來給 `click.prevent` 所使用。
 
-上面的代码运行起来，跟前一个例子是一模一样的。 只是抽象分类的程度更高了一些。  在复杂的项目中有用处。
+上面的代碼運行起來，跟前一個例子是一模一樣的。 只是抽象分類的程度更高了一些。  在複雜的項目中有用處。
 
-这样的 "event modifier"，有这些： 
+這樣的 "event modifier"，有這些： 
 
-- stop  propagation 被停止后（ 也就是调用了 event.stopPropagation()方法后 )，被触发 
-- prevent  调用了  event.preventDefault() 后被触发。
-- capture  子元素中的事件可以在该元素中 被触发。
-- self   事件的 event.target 就是本元素时，被触发。
-- once   该事件最多被触发一次。 
-- passive  为移动设备使用。 (在addEventListeners 定义时，增加passive选项。)
+- stop  propagation 被停止後（ 也就是調用了 event.stopPropagation()方法後 )，被觸發 
+- prevent  調用了  event.preventDefault() 後被觸發。
+- capture  子元素中的事件可以在該元素中 被觸發。
+- self   事件的 event.target 就是本元素時，被觸發。
+- once   該事件最多被觸發一次。 
+- passive  爲移動設備使用。 (在addEventListeners 定義時，增加passive選項。)
 
-以上的 "event modifier" 也可以连接起来使用。  例如： `v-on:click.prevent.self`
+以上的 "event modifier" 也可以連接起來使用。  例如： `v-on:click.prevent.self`
 
 
-### 6. Key Modifiers  按键修饰语
+### 6. Key Modifiers  按鍵修飾語
 
-Vuejs 也很贴心的提供了 Key Modifiers, 也就是一种支持键盘事件的快捷方法。 我们看下面的例子：
+Vuejs 也很貼心的提供了 Key Modifiers, 也就是一種支持鍵盤事件的快捷方法。 我們看下面的例子：
 
 ```
 <html>
@@ -316,8 +316,8 @@ Vuejs 也很贴心的提供了 Key Modifiers, 也就是一种支持键盘事件�
 </head>
 <body>
 	<div id='app'>
-		输入完毕后，按下回车键，就会<br/>
-		触发 "show_message" 事件~  <br/><br/>
+		輸入完畢後，按下回車鍵，就會<br/>
+		觸發 "show_message" 事件~  <br/><br/>
 
 		<input v-on:keyup.enter="show_message" v-model="message" />
 	</div>
@@ -330,7 +330,7 @@ Vuejs 也很贴心的提供了 Key Modifiers, 也就是一种支持键盘事件�
 			}, 
 			methods: {
 				show_message: function(){
-					alert("您输入了：" + this.message)
+					alert("您輸入了：" + this.message)
 				}
 			}
 		})
@@ -339,26 +339,26 @@ Vuejs 也很贴心的提供了 Key Modifiers, 也就是一种支持键盘事件�
 </html>
 ```
 
-可以看到，在上面的代码中， `v-on:keyup.enter="show_message"`  为 `<a/>`  元素定义了事件，该事件对应了 "回车键"。 
-（严格的说，是回车键被按下后，松开弹起来的那一刻）
+可以看到，在上面的代碼中， `v-on:keyup.enter="show_message"`  爲 `<a/>`  元素定義了事件，該事件對應了 "回車鍵"。 
+（嚴格的說，是回車鍵被按下後，鬆開彈起來的那一刻）
 
-我们用浏览器打开上面的代码对应的文件，输入一段文字，按回车，就可以看到事件已经被触发了。 如下图所示：
+我們用瀏覽器打開上面的代碼對應的文件，輸入一段文字，按回車，就可以看到事件已經被觸發了。 如下圖所示：
 
-![event key modifier被触发](./images/event_key_modifiers.png)
+![event key modifier被觸發](./images/event_key_modifiers.png)
 
-Vuejs 总共支持下面这些 Key modifiers: 
+Vuejs 總共支持下面這些 Key modifiers: 
 
-- enter    回车键
-- tab      tab 键
-- delete   同时对应了 backspace 和 del 键
-- esc      ESC 键
+- enter    回車鍵
+- tab      tab 鍵
+- delete   同時對應了 backspace 和 del 鍵
+- esc      ESC 鍵
 - space    空格
-- up       向上键
-- down     向下键
-- left     向左键
-- right    向右键
+- up       向上鍵
+- down     向下鍵
+- left     向左鍵
+- right    向右鍵
 
-随着 Vuejs 版本的不断迭代和更新，越来越多的 Key modifiers 被添加了进来， 例如 `page down`, `ctrl` 。对于这些键的用法，
-大家可以查阅官方文档。
+隨着 Vuejs 版本的不斷迭代和更新，越來越多的 Key modifiers 被添加了進來， 例如 `page down`, `ctrl` 。對於這些鍵的用法，
+大家可以查閱官方文檔。
 
 

@@ -1,53 +1,53 @@
-# 解决域名问题与跨域问题
+# 解決域名問題與跨域問題
 
-我们在部署之后, 会发现Vuejs会遇到js 的经典问题: 远程服务器地址不对,或者跨域问题.
+我們在部署之後, 會發現Vuejs會遇到js 的經典問題: 遠程服務器地址不對,或者跨域問題.
 
-还是用我们本书中的例子为例。
+還是用我們本書中的例子爲例。
 
-我们的真正后台接口是:
+我們的真正後臺接口是:
 
 http://siwei.me/interface/blogs/all
 
 如下:
 
-![后台接口](./images/后台接口.png)
+![後臺接口](./images/後臺接口.png)
 
-## 域名404 问题
+## 域名404 問題
 
-1.使用浏览器打开页面: http://vue_demo.siwei.me/#/blogs , 页面出错。
+1.使用瀏覽器打開頁面: http://vue_demo.siwei.me/#/blogs , 頁面出錯。
 
-![出错](./images/api_error_2.png)
+![出錯](./images/api_error_2.png)
 
-2.可以看到，出错的原因是 404, 打开 "http://vue_demo.siwei.me/api/interface/blogs/all"
+2.可以看到，出錯的原因是 404, 打開 "http://vue_demo.siwei.me/api/interface/blogs/all"
 
-![出错](./images/api_error_3.png)
+![出錯](./images/api_error_3.png)
 
-3.这个问题是由于源代码中,访问 `/interface/blogs/all` 这个接口引起的:
+3.這個問題是由於源代碼中,訪問 `/interface/blogs/all` 這個接口引起的:
 
-在文件`src/components/BlogList.vue` 中，第41行，我们定义了远程访问的url:  
+在文件`src/components/BlogList.vue` 中，第41行，我們定義了遠程訪問的url:  
 
 ```
 this.$http.get('/api/interface/blogs/all')...
 ```
 
-如下图所示：
+如下圖所示：
 
-![出错](./images/api_error_4.png)
+![出錯](./images/api_error_4.png)
 
 
-这是因为, 在我们开发的时候, vuejs 会通过 `$npm run dev` 命令, 跑起一个 "开发服务器", 这个server中有一个代理, 可以把所有的 以 '/api' 开头的请求, 如:
+這是因爲, 在我們開發的時候, vuejs 會通過 `$npm run dev` 命令, 跑起一個 "開發服務器", 這個server中有一個代理, 可以把所有的 以 '/api' 開頭的請求, 如:
 
 ```
 localhost:8080/api/interface/blogs/all
 ```
 
-转发到:
+轉發到:
 
 ```
 siwei.me/interface/blogs/all
 ```
 
-"开发服务器"的配置如下:
+"開發服務器"的配置如下:
 
 ```
 proxyTable: {
@@ -61,17 +61,17 @@ proxyTable: {
 },
 ```
 
-所以, 在开发环境下,一切正常.
+所以, 在開發環境下,一切正常.
 
-但是在生产环境中, 发起请求的时候, 就不存在代理服务器,不存在开发服务器（dev server）了,所以会出错.
+但是在生產環境中, 發起請求的時候, 就不存在代理服務器,不存在開發服務器（dev server）了,所以會出錯.
 
-（这个问题的解决办法，我们等下再讲。 ）
+（這個問題的解決辦法，我們等下再講。 ）
 
-## 跨域问题
+## 跨域問題
 
-这个问题,是js的经典问题.
+這個問題,是js的經典問題.
 
-比如，有的同学，在解决上面的问题的时候，会问：老师，我们直接把上图中 41 行的： 
+比如，有的同學，在解決上面的問題的時候，會問：老師，我們直接把上圖中 41 行的： 
 
 ```
 this.$http.get('/api/interface/blogs/all')
@@ -83,19 +83,19 @@ this.$http.get('/api/interface/blogs/all')
 this.$http.get('http://siwei.me/interface/blogs/all')
 ```
 
-不就可以了吗？ 
+不就可以了嗎？ 
 
-答案是不可以。 请动手试一下再说话。
+答案是不可以。 請動手試一下再說話。
 
-一动手，我们就会发现，  如果`vue_demo.siwei.me` 直接访问`siwei.me`域名下的资源,会报错.  因为他们是两个不同的域名.
+一動手，我們就會發現，  如果`vue_demo.siwei.me` 直接訪問`siwei.me`域名下的資源,會報錯.  因爲他們是兩個不同的域名.
 
-代码形如:
+代碼形如:
 
 ```
 this.$http.get('http://siwei.me/api/interface/blogs/all')...
 ```
 
-我们就会得到报错： 
+我們就會得到報錯： 
 
 ```
 XMLHttpRequest cannot load http://siwei.me/api/interface/blogs/all.
@@ -103,22 +103,22 @@ No 'Access-Control-Allow-Origin' header is present on the requested resource.
 Origin 'http://vue_demo.siwei.me' is therefore not allowed access.
 ```
 
-如下图所示：
+如下圖所示：
 
-![跨域问题](./images/api_error_cross_domain.png)
+![跨域問題](./images/api_error_cross_domain.png)
 
 
-## 解决域名问题和跨域问题
+## 解決域名問題和跨域問題
 
-其实，上面提到的两个问题，根源都是一个。 所以解决办法都是一样的。 
+其實，上面提到的兩個問題，根源都是一個。 所以解決辦法都是一樣的。 
 
-1.在代码端, 处理方式不变, 访问 `/api` + 原接口url。 （无变化）
+1.在代碼端, 處理方式不變, 訪問 `/api` + 原接口url。 （無變化）
 
 ```
 this.$http.get('/api/interface/blogs/all')...
 ```
 
-2.在开发的时候, 继续保持vuejs 的代理存在. 配置代码如下:  （无变化）
+2.在開發的時候, 繼續保持vuejs 的代理存在. 配置代碼如下:  （無變化）
 
 ```
 proxyTable: {
@@ -132,7 +132,7 @@ proxyTable: {
 },
 ```
 
-3.在nginx的配置文件中,加入代理:(详细说明见代码中的注释)  (这个是新增的)
+3.在nginx的配置文件中,加入代理:(詳細說明見代碼中的註釋)  (這個是新增的)
 
 ```
   server {
@@ -142,12 +142,12 @@ proxyTable: {
     charset utf-8;
     root /opt/app/vue_demo;
 
-    # 第一步,把所有的 mysite.com/api/interface  转换成:   mysite.com/interface
+    # 第一步,把所有的 mysite.com/api/interface  轉換成:   mysite.com/interface
     location /api {
       rewrite    ^(.*)\/api(.*)$    $1$2;
     }
 
-    # 第二步，　把所有的 mysite.com/interface 的请求，转发到 siwei.me/interface
+    # 第二步，　把所有的 mysite.com/interface 的請求，轉發到 siwei.me/interface
     location /interface {
       proxy_pass          http://siwei.me;
     }
@@ -157,20 +157,20 @@ proxyTable: {
 
 就可以了．
 
-也就是说，　上面的配置，把　
+也就是說，　上面的配置，把　
 
 ```
 http://vue_demo.siwei.me/api/interface/blogs/all
 ```
 
-在服务器端的nginx中做了个变换，相当于访问了：
+在服務器端的nginx中做了個變換，相當於訪問了：
 
 ```
 http://siwei.me/interface/blogs/all
 ```
 
-重启nginx ,　就会发现生效了．
+重啓nginx ,　就會發現生效了．
 
 如下所示：
 
-![解决了跨域问题](./images/api_error_fixed.png)
+![解決了跨域問題](./images/api_error_fixed.png)

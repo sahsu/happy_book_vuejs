@@ -1,12 +1,12 @@
-# 商品列表页
+# 商品列表頁
 
-商品列表， 在我们的首页有一部分， 在“列表页”（第二个Tab)也会存在。 
+商品列表， 在我們的首頁有一部分， 在“列表頁”（第二個Tab)也會存在。 
 
-所以我们可以直接把抽取成为组件。 
+所以我們可以直接把抽取成爲組件。 
 
-下面以首页中引用为例：
+下面以首頁中引用爲例：
 
-## 1. 在首页中添加代码 
+## 1. 在首頁中添加代碼 
 
 ```
 <template>
@@ -19,7 +19,7 @@
           </div>
         </div>
         <span class="divider" style="height: 2px;"></span>
-        <!-- 这里循环显示特产商品列表 -->
+        <!-- 這裏循環顯示特產商品列表 -->
         <SpecialMarket :id="good.id" :name="good.name" :description="good.description" :image_url="good.image_url" v-for="good in goods"></SpecialMarket>
       </div>
     </div>
@@ -27,21 +27,21 @@
   </div>
 </template>
 <script>
-    // 在这里引入 特产component
+    // 在這裏引入 特產component
     import SpecialMarket from '../../components/SpecialMarket.vue';
 </script>    
 ```
 
-上面的核心代码按如下：
+上面的核心代碼按如下：
 
 ```
-<!-- 这里循环显示特产商品列表 -->
+<!-- 這裏循環顯示特產商品列表 -->
 <SpecialMarket :id="good.id" :name="good.name" :description="good.description" :image_url="good.image_url" v-for="good in goods"></SpecialMarket>
 ```
 
-使用了v-for 和 componment的组合，来显示列表。
+使用了v-for 和 componment的組合，來顯示列表。
 
-## 2. 在component中添加该文件
+## 2. 在component中添加該文件
 
 新增文件 src/components/SpecialMarket.vue: 
 
@@ -90,8 +90,8 @@ import { go } from '../libs/router'
 
 ```
 
-可以看到，该段代码会接受一个数组，然后循环显示。 点击任意一个按钮， 跳转到详情页面。
+可以看到，該段代碼會接受一個數組，然後循環顯示。 點擊任意一個按鈕， 跳轉到詳情頁面。
 
-## 总结
+## 總結
 
-这里算是最简单的地方了。 
+這裏算是最簡單的地方了。 
